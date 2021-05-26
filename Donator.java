@@ -1,9 +1,13 @@
-import java.util.ArrayList;
-class Donator extends User
-{
-    public ArrayList<Offers>offersList;
-    public Donator(String Name, String Phone){
-        setName(Name);
-        setPhone(Phone);
-    }
+class Donator extends User {
+	private Offers offersList;
+
+	public Donator(String name, String phone) {
+		setName(name);
+		setPhone(phone);
+	}
+
+	public void addOffer(RequestDonation requestDonation)
+	{
+		offersList.add(requestDonation);
+	}
 }

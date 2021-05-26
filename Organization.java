@@ -4,7 +4,7 @@ public class Organization {
 	private String name;
 	private Admin admin;
 
-	public ArrayList<Entity> entityList;
+	private ArrayList<Entity> entityList;
 	public ArrayList<Donator> donatorList;
 	public ArrayList<Beneficiary> beneficiaryList;
 	public ArrayList<RequestDonationList> currentDonations;
