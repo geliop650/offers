@@ -1,7 +1,7 @@
+import java.util.ArrayList;
 public class Admin extends User
 {
     private boolean isAdmin = true;
-    public Admin () {}
     public Admin(String Name, String Phone){
             setName(Name);
             setPhone(Phone);
@@ -10,5 +10,10 @@ public class Admin extends User
     {
         return isAdmin;
     }
-
+    public ArrayList <Admin> adminList;
+    
+    public int getsize()
+    {
+        return adminList.size();
+    }
 }

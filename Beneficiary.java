@@ -8,4 +8,24 @@ class Beneficiary extends User
     {
         return noPersons;
     }
+    public void setnoPersons(int p)
+    {
+        noPersons = p;
+    }
+    public void add(Requests r)
+    {
+        requestsList.add(r);
+    }
+    public void remove(Requests r)
+    {
+        requestsList.remove(r);
+    }
+    public ArrayList<RequestDonationList> getReceivedList()
+    {
+        return receivedList;
+    }
+    public ArrayList<Requests> getRequestsList()
+    {
+        return requestsList;
+    }
 }
