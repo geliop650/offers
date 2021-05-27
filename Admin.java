@@ -2,9 +2,10 @@ import java.util.ArrayList;
 public class Admin extends User
 {
     private boolean isAdmin = true;
-    public Admin(String Name, String Phone){
-            setName(Name);
-            setPhone(Phone);
+    public Admin(int id, String name, String phone){
+            setName(name);
+            setPhone(phone);
+            setID(id);
         }
     public boolean getIsAdmin ()
     {

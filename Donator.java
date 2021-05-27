@@ -2,9 +2,10 @@ import java.util.ArrayList;
 class Donator extends User
 {
     private Offers offersList;
-    public Donator(String Name, String Phone){
-        setName(Name);
-        setPhone(Phone);
+    public Donator(int id, String name, String phone){
+        setName(name);
+        setPhone(phone);
+        setID(id);
     }
     public void add(RequestDonation rd)
     {
