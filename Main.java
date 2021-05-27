@@ -18,6 +18,8 @@ public class Main
         Admin ad = new Admin(1, "Maria" ,"6955555555");
         Beneficiary b1 = new Beneficiary(1, "Kostas", "6944444444");
         Beneficiary b2 = new Beneficiary(2, "Giorgos" , "698888888");
-        Donator d1 = new Donator(1, "Takis", "697777777"); 
+        Donator d1 = new Donator(1, "Takis", "697777777");
+        Menu m1 = new Menu();
+        m1.start(ad , org, m1);
     }
 }

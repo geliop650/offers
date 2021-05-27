@@ -90,4 +90,42 @@ public class Organization
     {
         return id;
     }
+    public enum UserStatus
+    {
+        Admin, Donator, Beneficiary;
+    }
+    public String getName()
+    {
+        return name;
+    }
+    public void setName(String name)
+    {
+        name = name;
+    }
+    public int  isBeneficiary(String phone)
+    {
+        int j=-1;
+        for (int i=0; i<beneficiaryList.size(); i++)
+        {
+            if (phone == beneficiaryList.get(i).getPhone())
+            {
+                 j=i;
+                 System.out.println("Name: " + beneficiaryList.get(i).getName());
+            }
+        }
+        return j;
+    }
+    public int  isDonator(String phone)
+    {
+        int j=-1;
+        for (int i=0; i<donatorList.size(); i++)
+        {
+            if (phone == donatorList.get(i).getPhone())
+            {
+                 j=i;
+                 System.out.println("Name: " + donatorList.get(i).getName());
+            }
+        }
+        return j;
+    }
 }

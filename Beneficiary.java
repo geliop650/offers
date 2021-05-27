@@ -40,4 +40,9 @@ class Beneficiary extends User
         setPhone(phone);
         setID(id);
     }
+    
+    public String getphone()
+    {
+        return getPhone();
+    }
 }

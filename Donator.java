@@ -19,4 +19,8 @@ class Donator extends User
     {
         return offersList;
     }
+    public String getphone()
+    {
+        return getPhone();
+    }
 }

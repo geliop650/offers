@@ -17,4 +17,8 @@ public class Admin extends User
     {
         return adminList.size();
     }
+    public String getphone()
+    {
+        return getPhone();
+    }
 }
