@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 public class Organization
 {
-    private String name;
+    private String orgName;
     private Admin admin;
     private int id;
     
@@ -9,6 +9,10 @@ public class Organization
     public ArrayList <Donator> donatorList;
     public ArrayList <Beneficiary> beneficiaryList;
     public ArrayList <RequestDonationList> currentDonations;
+    public Organization(String org)
+    {
+        orgName = org;
+    }
     public void setAdmin(String Name, String Phone)
     {
         admin.setName(Name);
@@ -94,15 +98,8 @@ public class Organization
     {
         Admin, Donator, Beneficiary;
     }
-    public String getName()
-    {
-        return name;
-    }
-    public void setName(String name)
-    {
-        name = name;
-    }
-    public int  isBeneficiary(String phone)
+
+    public int isBeneficiary(String phone)
     {
         int j=-1;
         for (int i=0; i<beneficiaryList.size(); i++)
@@ -115,7 +112,7 @@ public class Organization
         }
         return j;
     }
-    public int  isDonator(String phone)
+    public int isDonator(String phone)
     {
         int j=-1;
         for (int i=0; i<donatorList.size(); i++)
@@ -127,5 +124,14 @@ public class Organization
             }
         }
         return j;
+    }
+    public String getOrgName()
+    {
+        return orgName;
+    }
+    
+    public void setOrgName(String org)
+    {
+        orgName = org;
     }
 }
