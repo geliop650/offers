@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 public class Organization
 {
-    private String orgName;
+    private String name;
     private Admin admin;
     private int id;
     
@@ -11,12 +11,11 @@ public class Organization
     public RequestDonationList currentDonations;
     public Organization(String org)
     {
-        orgName = org;
+        name = org;
     }
-    public void setAdmin(String Name, String Phone)
+    public void setAdmin(Admin a1)
     {
-        admin.setName(Name);
-        admin.setPhone(Phone);
+        admin = a1;
     }
     public Admin getAdmin()
     {
@@ -98,40 +97,35 @@ public class Organization
     {
         Admin, Donator, Beneficiary;
     }
-
-    public int isBeneficiary(String phone)
-    {
-        int j=-1;
-        for (int i=0; i<beneficiaryList.size(); i++)
+    
+    public Beneficiary getBeneficiary(String phone){
+        for (int i=0; i<donatorList.size(); i++)
         {
             if (phone == beneficiaryList.get(i).getPhone())
             {
-                 j=i;
-                 System.out.println("Name: " + beneficiaryList.get(i).getName());
+                return beneficiaryList.get(i);
             }
         }
-        return j;
+        return null;
     }
-    public int isDonator(String phone)
-    {
-        int j=-1;
+    
+    public Donator getDonator(String phone){
         for (int i=0; i<donatorList.size(); i++)
         {
             if (phone == donatorList.get(i).getPhone())
             {
-                 j=i;
-                 System.out.println("Name: " + donatorList.get(i).getName());
+                return donatorList.get(i);
             }
         }
-        return j;
+        return null;
     }
     public String getOrgName()
     {
-        return orgName;
+        return name;
     }
     
     public void setOrgName(String org)
     {
-        orgName = org;
+        name = org;
     }
 }

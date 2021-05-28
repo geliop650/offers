@@ -30,5 +30,11 @@ public class RequestDonation
     {
         return id;
     }
+    public boolean isValid(Beneficiary b){
+        if(entity.isService() == false){
+            return true;
+        }else {return false; //έλεγχοι
+        }
+    }
 }
 

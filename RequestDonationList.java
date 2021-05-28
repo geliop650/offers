@@ -28,9 +28,9 @@ public class RequestDonationList
             else rdEntities.add(R);
         }
     }
-    public void remove(RequestDonation R)
+    public void remove(RequestDonation r)
     {
-        rdEntities.remove(R);
+        rdEntities.remove(r);
     }
     public void modify(RequestDonation R, double q)
     {
@@ -61,4 +61,5 @@ public class RequestDonationList
     {
         return id;
     }
+    
 }

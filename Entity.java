@@ -3,7 +3,7 @@ abstract public class Entity
    private String name;
    private String description;
    private int id;
-   private int matORser;
+   public boolean isService;
    public String getEntityInfo()
     {  
         return "Name is: " + this.name + " Description is: " + this.description + " Id is: " + id;
@@ -13,13 +13,15 @@ abstract public class Entity
     {
         return "The Info Of the Entity: " + this.getEntityInfo() + "The Details of the Material/Service: " + this.getDetails();
     }
-   public int getmatORser()
+
+   public boolean isService()
+    {
+       return isService;
+    }
+       
+   public void setIsService(boolean x)
    {
-       return matORser;    
-   }
-   public void setmatORser(int mOs)
-   {
-       matORser = mOs;    
+       isService = x;
    }
    public int getID()
    {
@@ -29,9 +31,9 @@ abstract public class Entity
    {
         id = ID;
    }
-   public void setName(String Name)
+   public void setName(String name1)
    {
-       name = Name;
+       name = name1;
    }
    public String getName()
    {

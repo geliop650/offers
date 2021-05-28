@@ -5,40 +5,59 @@ public class Menu
     private String phone;
     private String name;
     public Menu(){}
-    public void start(Admin a1, Organization o1, Menu m1)
+
+    public void start(Organization o1, Menu m1)
     {
-        System.out.println("Please enter your phone number: ");
+        System.out.println("Please enter your phone number: "); //exception για το αν το τηλέφωνο είναι τηλέφωνο και όχι text
         Scanner scanner = new Scanner(System.in);
         phone = scanner.nextLine();
-        String yesORno;
-        if (phone == a1.getphone())
+        String answer;
+        Beneficiary t1 = o1.getBeneficiary(phone);
+        Donator s1 = o1.getDonator(phone);
+
+        if (phone == o1.getAdmin().getphone())
         {
-            System.out.println("This user is the Admin of the Organization " + o1.getOrgName() + "." );
+            System.out.println("Welcome Admin! \n" 
+                + "Username: " + o1.getAdmin().getName() + "\n"
+                + "Phone number: " + o1.getAdmin().getPhone() + "\n"
+                + "You belong in the Organization " + o1.getOrgName());
+            //μέθοδο για συνέχεια
         }
-        else if (o1.isBeneficiary(phone) != -1)
+
+        else if (t1 != null)
         {
-            o1.isBeneficiary(phone);
+            System.out.println("Welcome Beneficiary! \n" 
+                + "Username: " + t1.getName() + "\n"
+                + "Phone number: " + t1.getPhone() + "\n"
+                + "You belong in the Organization " + o1.getOrgName());
+            //μέθοδο για συνέχεια
         }
-        else if (o1.isDonator(phone) != -1)
+        else if (s1 != null)
         {
-            o1.isDonator(phone);
+            System.out.println("Welcome Donator! \n" 
+                + "Username: " + s1.getName() + "\n"
+                + "Phone number: " + s1.getPhone() + "\n"
+                + "You belong in the Organization " + o1.getOrgName());
+            //μέθοδο για συνέχεια
         }
         else 
         {
-            System.out.println ("This user is not yet registered to our system.");
-            System.out.println ("Please enter yes to continue with your sign up , or no exit the program.");
-            yesORno = scanner.nextLine();
-            if (yesORno == "yes")
+            System.out.println ("This user is not yet registered in our system.");
+            System.out.println ("Please enter yes to continue with your sign up, or no to exit the program.");
+            answer = scanner.nextLine();
+            if (answer == "yes")
             {
                 m1.SignUp(o1);
             }
-            else if (yesORno == "no")
+            else if (answer == "no")
             {
                 System.exit(0);
+                scanner.close();
             }
         }
+        scanner.close();
     }
-    
+
     public void SignUp(Organization o1)
     {
         String select;
@@ -53,22 +72,25 @@ public class Menu
         select = scanner.nextLine();
         if(select == "1")
         {
-            Donator d2 = new Donator((id++), name, phone); /*Να βρω έναν τρόπο ωστέ το όνομα του αντικειμένου πχ d2 να αλλάζει 
-            κάθε φορά που τρέχει αυτό το κομμάτι κώδικα*/
-            o1.insertDonator(d2); /*Και εδώ το ίδιο*/
+            Donator d = new Donator((id++), name, phone);
+            o1.insertDonator(d);
+            System.out.println("Welcome Donator! \n" 
+                + "Username: " + name + "\n"
+                + "Phone number: " + phone + "\n"
+                + "You belong in the Organization " + o1.getOrgName());
         }
         else if(select == "2")
         {
-            Beneficiary b3 = new Beneficiary((id2++), name, phone);/*Να βρω έναν τρόπο ωστέ το όνομα του αντικειμένου πχ d2 να αλλάζει 
-            κάθε φορά που τρέχει αυτό το κομμάτι κώδικα*/
-            o1.insertBeneficiary(b3); /*Και εδώ το ίδιο*/
+            Beneficiary b = new Beneficiary((id2++), name, phone);
+            o1.insertBeneficiary(b);
+            System.out.println("Welcome Beneficiary! \n" 
+                + "Username: " + name + "\n"
+                + "Phone number: " + phone + "\n"
+                + "You belong in the Organization " + o1.getOrgName());
         }
         else{
             //Εδώ θέλουμε ένα exception κατά την γνώμη μου που θα κάνει exit το πρόγραμμα
         }
-        System.out.print("Welcome User with Username: " + name + "Phone number " + phone + "You belong in the Organization " + o1.getOrgName() 
-        + "You are a "); 
-        if(select == "1"){ System.out.println("Donator.");}
-        else {System.out.println("Beneficiary.");}
+        scanner.close();
     }
 }
