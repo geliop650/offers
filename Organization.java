@@ -8,7 +8,7 @@ public class Organization
     public ArrayList <Entity> entityList;
     public ArrayList <Donator> donatorList;
     public ArrayList <Beneficiary> beneficiaryList;
-    public ArrayList <RequestDonationList> currentDonations;
+    public RequestDonationList currentDonations;
     public Organization(String org)
     {
         orgName = org;
@@ -82,7 +82,7 @@ public class Organization
            System.out.println ("Donator No " + (i+1) + " is " + donatorList.get(i).getName());
         }
     }
-    public ArrayList <RequestDonationList> getCurrentDonations()
+    public RequestDonationList getCurrentDonations()
     {
         return currentDonations;
     }
