@@ -1,13 +1,18 @@
 public class Service extends Entity
 {
+    /*private double time;*/
     public String getDetails()
     {
         return "This is a Service";    
     }    
-    public Service (String name, int id)
+    public Service (int id, String name)
     {
         setName(name);
         setID(id);
-        setmatORser(0);   
+        setIsService(true);
     }
+    /*@Override
+    public double getTime(){
+        return time;
+    }*/
 }

@@ -2,8 +2,8 @@ import java.util.ArrayList;
 class Beneficiary extends User
 {
     private int noPersons = 1;
-    public ArrayList<RequestDonationList>receivedList;
-    public ArrayList<Requests>requestsList;
+    public RequestDonationList receivedList;
+    public Requests requestsList;
     public int getnoPersons()
     {
         return noPersons;
@@ -14,9 +14,9 @@ class Beneficiary extends User
         noPersons = p;
     }
 
-    public void add(Requests r)
+    public void addRequest(Entity e)
     {
-        requestsList.add(r);
+        requestsList.add(e);
     }
 
     public void remove(Requests r)
@@ -24,12 +24,12 @@ class Beneficiary extends User
         requestsList.remove(r);
     }
 
-    public ArrayList<RequestDonationList> getReceivedList()
+    public RequestDonationList getReceivedList()
     {
         return receivedList;
     }
 
-    public ArrayList<Requests> getRequestsList()
+    public Requests getRequestsList()
     {
         return requestsList;
     }

@@ -12,15 +12,13 @@ public class RequestDonation
     {
         return quantity;
     }
+    public String getName(){
+        return entity.getName();
+    }
     public int getiD()
     {
         int id = entity.getID();
         return id;
-    }
-    public int getmatOrser()
-    {
-        int matorser = entity.getmatORser();
-        return matorser;
     }
     public void setID(int ID)
     {
@@ -31,10 +29,24 @@ public class RequestDonation
         return id;
     }
     public boolean isValid(Beneficiary b){
-        if(entity.isService() == false){
+        if(entity.isService()){
             return true;
-        }else {return false; //έλεγχοι
+        }else {
+            if(b.getnoPersons() == 1){
+                return (b.getReceivedList().getTotalQuantity(entity.getName()) < entity.getLevel1());
+            }
+            else if(b.getnoPersons() <=4){
+                return (b.getReceivedList().getTotalQuantity(entity.getName()) < entity.getLevel2());
+            }
+            else if(b.getnoPersons() >= 5){
+                return (b.getReceivedList().getTotalQuantity(entity.getName()) < entity.getLevel3());
+            }
+            return false; //έλεγχοι
         }
     }
+    public Entity getEntity(){
+        return entity;
+    }
+    
 }
 

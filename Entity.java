@@ -39,4 +39,19 @@ abstract public class Entity
    {
         return name;   
    }
+   /*public double getTime(){
+       return 0;
+   }*/
+   public double getLevel1()
+   {
+       return 0;
+   }
+    public double getLevel2()
+   {
+       return 0;
+   }
+    public double getLevel3()
+   {
+       return 0;
+   }
 }

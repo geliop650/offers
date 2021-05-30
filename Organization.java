@@ -51,18 +51,40 @@ public class Organization
         System.out.println ("Materials: ");
         for (int i=0; i<entityList.size(); i++)
         {
-            if (entityList.get(i).getmatORser() == 1)
+            if (!entityList.get(i).isService)
             {
-                System.out.println ("No." + (i+1) + entityList.get(i));    
+                System.out.println ("No." + (i+1) + entityList.get(i).getName());    
             }
         }
         System.out.println();
         System.out.println ("Services: ");
         for (int i=0; i<entityList.size(); i++)
         {
-            if (entityList.get(i).getmatORser() == 0)
+            if (entityList.get(i).isService)
             {
-                System.out.println ("No." + (i+1) + entityList.get(i));    
+                System.out.println ("No." + (i+1) + entityList.get(i).getName());    
+            }
+        }
+    }
+    public void listMaterials(){
+        System.out.println ("Materials: ");
+        for (int i=0; i<entityList.size(); i++)
+        {
+            if (!entityList.get(i).isService)
+            {
+                System.out.println ("No." + (i+1) + entityList.get(i).getName() + "(Quantity: " + entityList.get(i).getQuantity()/*Δεν μπορούμε να πάρουμε
+                Quantity του αντικειμένου αφού δεν υπάρχει κατάλληλη μέθοδος*/);
+            }
+        }
+    }
+    public void listServices(){
+        System.out.println ("Services: ");
+        for (int i=0; i<entityList.size(); i++)
+        {
+            if (entityList.get(i).isService)
+            {
+                System.out.println ("No." + (i+1) + entityList.get(i).getName() + "(Quantity: " + entityList.get(i).getQuantity()/*Δεν μπορούμε να πάρουμε
+                Quantity του αντικειμένου αφού δεν υπάρχει κατάλληλη μέθοδος*/);    
             }
         }
     }
@@ -95,13 +117,13 @@ public class Organization
     }
     public enum UserStatus
     {
-        Admin, Donator, Beneficiary;
+        ADMIN, DONATOR, BENEFICIARY;
     }
     
     public Beneficiary getBeneficiary(String phone){
         for (int i=0; i<donatorList.size(); i++)
         {
-            if (phone == beneficiaryList.get(i).getPhone())
+            if (phone.equals(beneficiaryList.get(i).getPhone()))
             {
                 return beneficiaryList.get(i);
             }
@@ -112,7 +134,7 @@ public class Organization
     public Donator getDonator(String phone){
         for (int i=0; i<donatorList.size(); i++)
         {
-            if (phone == donatorList.get(i).getPhone())
+            if (phone.equals(donatorList.get(i).getPhone()))
             {
                 return donatorList.get(i);
             }

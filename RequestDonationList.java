@@ -1,7 +1,9 @@
 import java.util.ArrayList;
+
+import javax.xml.namespace.QName;
 public class RequestDonationList
 {
-    public ArrayList<RequestDonation>rdEntities;
+    public ArrayList<RequestDonation> rdEntities;
     private int id;
     public RequestDonation get(int id)
     { 
@@ -46,7 +48,7 @@ public class RequestDonationList
     {
         for (int i=0; i<rdEntities.size(); i++)
         {
-            System.out.println("Request No." + (i+1) + " is " + rdEntities.get(i) + "and it's quantity is " + rdEntities.get(i).getQuantity());
+            System.out.println("Request No." + (i+1) + " is " + rdEntities.get(i).getName() + "and it's quantity is " + rdEntities.get(i).getQuantity());
         }
     }
     public void reset()
@@ -61,5 +63,11 @@ public class RequestDonationList
     {
         return id;
     }
-    
+    public double getTotalQuantity(String n){
+        double total = 0;
+        for (RequestDonation r : rdEntities){
+            if (r.getEntity().getName().equals(n)) total += r.getQuantity();
+        }
+        return total;
+    }
 }

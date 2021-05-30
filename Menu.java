@@ -1,5 +1,4 @@
 import java.util.*;
-import java.lang.*;
 public class Menu
 {
     private String phone;
@@ -15,7 +14,7 @@ public class Menu
         Beneficiary t1 = o1.getBeneficiary(phone);
         Donator s1 = o1.getDonator(phone);
 
-        if (phone == o1.getAdmin().getphone())
+        if (phone.equals(o1.getAdmin().getphone()))
         {
             System.out.println("Welcome Admin! \n" 
                 + "Username: " + o1.getAdmin().getName() + "\n"
@@ -45,11 +44,11 @@ public class Menu
             System.out.println ("This user is not yet registered in our system.");
             System.out.println ("Please enter yes to continue with your sign up, or no to exit the program.");
             answer = scanner.nextLine();
-            if (answer == "yes")
+            if (answer.equals("yes"))
             {
-                m1.SignUp(o1);
+                m1.signUp(o1);
             }
-            else if (answer == "no")
+            else if (answer.equals("no"))
             {
                 System.exit(0);
                 scanner.close();
@@ -58,7 +57,7 @@ public class Menu
         scanner.close();
     }
 
-    public void SignUp(Organization o1)
+    public void signUp(Organization o1)
     {
         String select;
         int id = 1;
@@ -70,7 +69,7 @@ public class Menu
         phone = scanner.nextLine();
         System.out.println("Type 1 If you want to create a Donator Account or Type 2 If you want to create a Beneficiary Account");
         select = scanner.nextLine();
-        if(select == "1")
+        if(select.equals("1"))
         {
             Donator d = new Donator((id++), name, phone);
             o1.insertDonator(d);
@@ -79,7 +78,7 @@ public class Menu
                 + "Phone number: " + phone + "\n"
                 + "You belong in the Organization " + o1.getOrgName());
         }
-        else if(select == "2")
+        else if(select.equals("2"))
         {
             Beneficiary b = new Beneficiary((id2++), name, phone);
             o1.insertBeneficiary(b);
@@ -93,4 +92,53 @@ public class Menu
         }
         scanner.close();
     }
+
+    public void donatorMenu(Donator d, Organization o){
+        int select = 0;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please Select One Of The Following Options: ");
+        System.out.println("1) Add Offer \n" + 
+        "2) Show Offers \n" + 
+        "3) Commit \n" +
+        "4) Back \n" +
+        "5) Logout \n" +
+        "6) Exit \n");
+        select = scanner.nextInt();
+        while (select < 1 || select > 6){
+            System.out.println("Please Select A Valid Option: ");
+            select = scanner.nextInt();
+        }
+        switch (select){
+
+            case 1:
+                int select1 = 0;
+                System.out.println("Please Select One Of The Following Options: ");
+                System.out.println("1) Materials 2) Services ");
+                select1 = scanner.nextInt();
+                while (select1 < 1 || select > 2){
+                    System.out.println("Please Select A Valid Option: ");
+                    select1 = scanner.nextInt();
+                }
+                if(select1 == 1){
+                    //Να εκτυπώνει το listServices() και listMaterials()
+                }
+                break;
+
+            case 2:
+
+            case 3:
+
+            case 4:
+
+            case 5:
+
+            case 6:
+
+        }
+        scanner.close();
+    }
+
+
+
+
 }
