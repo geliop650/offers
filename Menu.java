@@ -120,7 +120,10 @@ public class Menu
                     select1 = scanner.nextInt();
                 }
                 if(select1 == 1){
-                    //Να εκτυπώνει το listServices() και listMaterials()
+                    o.listMaterials();
+                }
+                if(select1 == 2){
+                    o.listServices();
                 }
                 break;
 

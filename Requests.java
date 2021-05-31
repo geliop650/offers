@@ -1,16 +1,39 @@
 public class Requests extends RequestDonationList
 {
-    public void validRequestDonation(RequestDonation rd, Beneficiary b)
+    public boolean validRequestDonation(Beneficiary b)
     {
-        if (!rd.getEntity().isService)
-        {
-            
-            if (b.getnoPersons() == 1)
-            {
-                
-                
-                
+        for (RequestDonation r : rdEntities){
+            if(!r.isValid(b)){
+                return false;
             }
         }
+        return true;
+    }
+    public void add(Organization o1, RequestDonation rd, Beneficiary b){
+        if(o1.isAvailable(rd)){//overriding τα ifs
+            if(validRequestDonation(b)){
+                add(rd);
+            }//else ; exception
+        }//else ; exception
+    }
+    public void modify(Organization o1, RequestDonation rd, Beneficiary b, double q){
+        if(o1.isAvailable(rd)){//overriding τα ifs
+            if(validRequestDonation(b)){
+                modify(rd, q);
+            }//else ; exception
+        }//else ; exception
+    }
+    public void commit(Organization o1, RequestDonation rd, Beneficiary b){
+        if(o1.isAvailable(rd)){//overriding τα ifs
+            if(validRequestDonation(b)){
+                for(RequestDonation cr : rdEntities){
+                    if(cr.getName().equals(rd.getName())){
+                        cr.removeQuantity(rd.getQuantity());
+                        b.addReceived(rd);
+                        return;
+                    }
+                }
+            }//else ; exception
+        }//else ; exception
     }
 }

@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 public class RequestDonation 
 {
     private Entity entity;
@@ -7,6 +6,9 @@ public class RequestDonation
     public void setQuantity(double q)
     {
         quantity = q;
+    }
+    public void removeQuantity(double q){
+        quantity -= q;
     }
     public double getQuantity()
     {
@@ -41,7 +43,7 @@ public class RequestDonation
             else if(b.getnoPersons() >= 5){
                 return (b.getReceivedList().getTotalQuantity(entity.getName()) < entity.getLevel3());
             }
-            return false; //έλεγχοι
+            return false;
         }
     }
     public Entity getEntity(){

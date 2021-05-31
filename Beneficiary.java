@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 class Beneficiary extends User
 {
     private int noPersons = 1;
@@ -14,14 +13,19 @@ class Beneficiary extends User
         noPersons = p;
     }
 
-    public void addRequest(Entity e)
+    public void addRequest(RequestDonation rd)
     {
-        requestsList.add(e);
+        requestsList.add(rd);
     }
 
-    public void remove(Requests r)
+    public void remove(RequestDonation rd)
     {
-        requestsList.remove(r);
+        requestsList.remove(rd);
+    }
+
+    public void addReceived(RequestDonation rd)
+    {
+        receivedList.add(rd);
     }
 
     public RequestDonationList getReceivedList()
@@ -39,10 +43,5 @@ class Beneficiary extends User
         setName(name);
         setPhone(phone);
         setID(id);
-    }
-    
-    public String getphone()
-    {
-        return getPhone();
     }
 }

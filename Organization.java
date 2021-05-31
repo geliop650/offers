@@ -68,23 +68,21 @@ public class Organization
     }
     public void listMaterials(){
         System.out.println ("Materials: ");
-        for (int i=0; i<entityList.size(); i++)
+        for (RequestDonation l : currentDonations.rdEntities)
         {
-            if (!entityList.get(i).isService)
+            if (!l.getEntity().isService)
             {
-                System.out.println ("No." + (i+1) + entityList.get(i).getName() + "(Quantity: " + entityList.get(i).getQuantity()/*Δεν μπορούμε να πάρουμε
-                Quantity του αντικειμένου αφού δεν υπάρχει κατάλληλη μέθοδος*/);
+                System.out.println (String.format("ID: %s Name: %s (Quantity: %d ) ", l.getID(), l.getName(), l.getQuantity()));
             }
         }
     }
     public void listServices(){
         System.out.println ("Services: ");
-        for (int i=0; i<entityList.size(); i++)
+        for (RequestDonation l : currentDonations.rdEntities)
         {
-            if (entityList.get(i).isService)
+            if (l.getEntity().isService)
             {
-                System.out.println ("No." + (i+1) + entityList.get(i).getName() + "(Quantity: " + entityList.get(i).getQuantity()/*Δεν μπορούμε να πάρουμε
-                Quantity του αντικειμένου αφού δεν υπάρχει κατάλληλη μέθοδος*/);    
+                System.out.println (String.format("ID: %s Name: %s (Quantity: %d ) ", l.getID(), l.getName(), l.getQuantity()));
             }
         }
     }
@@ -149,5 +147,14 @@ public class Organization
     public void setOrgName(String org)
     {
         name = org;
+    }
+
+    public boolean isAvailable(RequestDonation r){
+        for(RequestDonation l : currentDonations.rdEntities){
+            if(r.getName().equals(l.getName()) && r.getQuantity() <= l.getQuantity()){
+                return true;
+            }
+        }
+        return false;
     }
 }

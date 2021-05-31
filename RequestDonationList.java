@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-
-import javax.xml.namespace.QName;
 public class RequestDonationList
 {
     public ArrayList<RequestDonation> rdEntities;
@@ -34,11 +32,11 @@ public class RequestDonationList
     {
         rdEntities.remove(r);
     }
-    public void modify(RequestDonation R, double q)
+    public void modify(RequestDonation r, double q)
     {
         for (int i=0; i<rdEntities.size(); i++)
         {
-            if (R.getiD() == rdEntities.get(i).getiD())
+            if (r.getiD() == rdEntities.get(i).getiD())
             {
                 rdEntities.get(i).setQuantity(q);
             }

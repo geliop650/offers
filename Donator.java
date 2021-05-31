@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 class Donator extends User
 {
     private Offers offersList;
@@ -18,9 +17,5 @@ class Donator extends User
     public Offers getOffersList()
     {
         return offersList;
-    }
-    public String getphone()
-    {
-        return getPhone();
     }
 }
