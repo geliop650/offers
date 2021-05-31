@@ -37,6 +37,7 @@ public class Menu
                 + "Username: " + s1.getName() + "\n"
                 + "Phone number: " + s1.getPhone() + "\n"
                 + "You belong in the Organization " + o1.getOrgName());
+                m1.donatorMenu(s1, o1);
             //μέθοδο για συνέχεια
         }
         else 
@@ -46,7 +47,7 @@ public class Menu
             answer = scanner.nextLine();
             if (answer.equals("yes"))
             {
-                m1.signUp(o1);
+                m1.signUp(o1, m1);
             }
             else if (answer.equals("no"))
             {
@@ -57,7 +58,7 @@ public class Menu
         scanner.close();
     }
 
-    public void signUp(Organization o1)
+    public void signUp(Organization o1, Menu m1)
     {
         String select;
         int id = 1;
@@ -77,6 +78,7 @@ public class Menu
                 + "Username: " + name + "\n"
                 + "Phone number: " + phone + "\n"
                 + "You belong in the Organization " + o1.getOrgName());
+                m1.donatorMenu(d, o1);
         }
         else if(select.equals("2"))
         {
@@ -95,6 +97,7 @@ public class Menu
 
     public void donatorMenu(Donator d, Organization o){
         int select = 0;
+        int id = 0;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please Select One Of The Following Options: ");
         System.out.println("1) Add Offer \n" + 
@@ -109,7 +112,6 @@ public class Menu
             select = scanner.nextInt();
         }
         switch (select){
-
             case 1:
                 int select1 = 0;
                 System.out.println("Please Select One Of The Following Options: ");
@@ -121,10 +123,23 @@ public class Menu
                 }
                 if(select1 == 1){
                     o.listMaterials();
+                    System.out.println("Input the ID of the Material You Want to Contribute: ");
+                    id = scanner.nextInt();
+                    /*for (RequestDonation rd : o.){
+                        if (e.getID() == id){
+                            System.out.println (String.format("ID: %s Name: %s (Quantity: %d ) ", e.getID(), e.getName(), e.getQuantity()));
+ 
+                            o.entityList.get(i).getName(), o.entityList.get(i).getQuantity())
+                        }
+                    }*/
                 }
                 if(select1 == 2){
                     o.listServices();
+                    System.out.println("Input the ID of the Service You Want to Contribute: ");
+                    id = scanner.nextInt();
                 }
+                System.out.println("Input the Amount You Want to Contribute: ");
+                
                 break;
 
             case 2:
@@ -134,8 +149,12 @@ public class Menu
             case 4:
 
             case 5:
-
+                
+                break;
             case 6:
+                System.exit(0);
+                break;
+            default :
 
         }
         scanner.close();

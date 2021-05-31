@@ -1,14 +1,14 @@
 import java.util.ArrayList;
 public class RequestDonationList
 {
-    public ArrayList<RequestDonation> rdEntities;
+    public ArrayList<RequestDonation> rdEntities = new ArrayList <RequestDonation> ();
     private int id;
     public RequestDonation get(int id)
     { 
         int j=0;
         for (int i=0; i<rdEntities.size(); i++)
         {
-            if (id == rdEntities.get(i).getiD())
+            if (id == rdEntities.get(i).getID())
             {
                 j=i;
             }
@@ -19,7 +19,7 @@ public class RequestDonationList
     {
         for (int i=0; i<rdEntities.size(); i++)
         {
-            if (R.getiD() == rdEntities.get(i).getiD())
+            if (R.getID() == rdEntities.get(i).getID())
             {
                 double newq;
                 newq = rdEntities.get(i).getQuantity() + R.getQuantity();
@@ -36,7 +36,7 @@ public class RequestDonationList
     {
         for (int i=0; i<rdEntities.size(); i++)
         {
-            if (r.getiD() == rdEntities.get(i).getiD())
+            if (r.getID() == rdEntities.get(i).getID())
             {
                 rdEntities.get(i).setQuantity(q);
             }

@@ -68,7 +68,8 @@ public class Organization
     }
     public void listMaterials(){
         System.out.println ("Materials: ");
-        for (RequestDonation l : currentDonations.rdEntities)
+        for (RequestDonation l : currentDonations.rdEntities)//Τα αντικείμενα που υπάρχουν στην rdEntities δεν είναι τα αντικείμενα που 
+        //υπάρχουν στην entitiesList επομένως, όταν αρχίσουμε το πρόγραμμα δεν θα του εμφανίσει αντικείμενα.
         {
             if (!l.getEntity().isService)
             {
@@ -105,9 +106,9 @@ public class Organization
     {
         return currentDonations;
     }
-    public void setID(int ID)
+    public void setID(int iD)
     {
-        id = ID;
+        id = iD;
     }
     public int getID()
     {

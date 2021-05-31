@@ -2,7 +2,6 @@ public class RequestDonation
 {
     private Entity entity;
     private double quantity;
-    private int id;
     public void setQuantity(double q)
     {
         quantity = q;
@@ -17,18 +16,9 @@ public class RequestDonation
     public String getName(){
         return entity.getName();
     }
-    public int getiD()
-    {
-        int id = entity.getID();
-        return id;
-    }
-    public void setID(int ID)
-    {
-        id = ID;
-    }
     public int getID()
     {
-        return id;
+        return entity.getID();
     }
     public boolean isValid(Beneficiary b){
         if(entity.isService()){
