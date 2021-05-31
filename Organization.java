@@ -5,9 +5,9 @@ public class Organization
     private Admin admin;
     private int id;
     
-    public ArrayList <Entity> entityList;
-    public ArrayList <Donator> donatorList;
-    public ArrayList <Beneficiary> beneficiaryList;
+    public ArrayList <Entity> entityList = new ArrayList <Entity> ();
+    public ArrayList <Donator> donatorList = new ArrayList <Donator> ();
+    public ArrayList <Beneficiary> beneficiaryList = new ArrayList <Beneficiary> ();
     public RequestDonationList currentDonations;
     public Organization(String org)
     {
