@@ -66,7 +66,7 @@ public class Organization
             }
         }
     }
-    public void listMaterials(){
+    public void listCurrentMaterials(){
         System.out.println ("Materials: ");
         for (RequestDonation l : currentDonations.rdEntities)//Τα αντικείμενα που υπάρχουν στην rdEntities δεν είναι τα αντικείμενα που 
         //υπάρχουν στην entitiesList επομένως, όταν αρχίσουμε το πρόγραμμα δεν θα του εμφανίσει αντικείμενα.
@@ -77,13 +77,33 @@ public class Organization
             }
         }
     }
-    public void listServices(){
+    public void listCurrentServices(){
         System.out.println ("Services: ");
         for (RequestDonation l : currentDonations.rdEntities)
         {
             if (l.getEntity().isService)
             {
                 System.out.println (String.format("ID: %s Name: %s (Quantity: %d ) ", l.getID(), l.getName(), l.getQuantity()));
+            }
+        }
+    }
+    public void listMaterials(){
+        System.out.println ("Materials: ");
+        for (Entity e : entityList)
+        {
+            if (!e.isService())
+            {
+                System.out.println (String.format("ID: %s Name: %s ", e.getID(), e.getName()));
+            }
+        }
+    } 
+    public void listServices(){
+        System.out.println ("Services: ");
+        for (Entity e : entityList)
+        {
+            if (e.isService())
+            {
+                System.out.println (String.format("ID: %s Name: %s ", e.getID(), e.getName()));
             }
         }
     }
@@ -157,5 +177,12 @@ public class Organization
             }
         }
         return false;
+    }
+    public Entity getEntityById(int id){
+        for(Entity e : entityList){
+            if (e.getID() == id){
+                return e;
+            }
+        }return null;
     }
 }

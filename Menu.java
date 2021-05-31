@@ -31,6 +31,7 @@ public class Menu
                 + "You belong in the Organization " + o1.getOrgName());
             //μέθοδο για συνέχεια
         }
+        
         else if (s1 != null)
         {
             System.out.println("Welcome Donator! \n" 
@@ -114,6 +115,8 @@ public class Menu
         switch (select){
             case 1:
                 int select1 = 0;
+                double amount = 0;
+                double hours = 0;
                 System.out.println("Please Select One Of The Following Options: ");
                 System.out.println("1) Materials 2) Services ");
                 select1 = scanner.nextInt();
@@ -125,28 +128,43 @@ public class Menu
                     o.listMaterials();
                     System.out.println("Input the ID of the Material You Want to Contribute: ");
                     id = scanner.nextInt();
-                    /*for (RequestDonation rd : o.){
-                        if (e.getID() == id){
-                            System.out.println (String.format("ID: %s Name: %s (Quantity: %d ) ", e.getID(), e.getName(), e.getQuantity()));
- 
-                            o.entityList.get(i).getName(), o.entityList.get(i).getQuantity())
-                        }
-                    }*/
+                    System.out.println("Input the Amount You Want to Contribute: ");
+                    amount = scanner.nextDouble();
+
+                    //Επιλογή yes or no
+
+                    RequestDonation req = new RequestDonation(o.getEntityById(id), amount);
+                    d.getOffersList().add(req);
+                    
                 }
                 if(select1 == 2){
                     o.listServices();
                     System.out.println("Input the ID of the Service You Want to Contribute: ");
                     id = scanner.nextInt();
+                    System.out.println("Input the Amount You Want to Contribute: ");
+                    hours = scanner.nextDouble();
+
+                    //Επιλογή yes or no
+
+                    RequestDonation req = new RequestDonation(o.getEntityById(id), hours);
+                    d.getOffersList().add(req);
+                    
                 }
-                System.out.println("Input the Amount You Want to Contribute: ");
-                
                 break;
 
             case 2:
-
+                
+                d.listOffers();
+                break;
             case 3:
 
+            //o.currentDonations.rdEntities.add(req);
+            break;
+            
+
             case 4:
+
+            break;
 
             case 5:
                 

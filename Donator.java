@@ -18,4 +18,11 @@ class Donator extends User
     {
         return offersList;
     }
+    public void listOffers(){
+        for (RequestDonation rd : offersList.rdEntities){
+            System.out.println(String.format("ID: %d Name: %s Quantity: %d Type: %s", rd.getID(), rd.getName(), rd.getQuantity(), 
+            rd.getEntity().isService() ? "Service" : "Material"));
+        }
+
+        }
 }
