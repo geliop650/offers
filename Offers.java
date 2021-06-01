@@ -11,6 +11,7 @@ public class Offers extends RequestDonationList
             rdEntities.remove(i);
         }
     }
+    @Override
     public void add(RequestDonation rd)
     {
         add(rd);

@@ -38,7 +38,7 @@ public class Menu
                 + "Username: " + s1.getName() + "\n"
                 + "Phone number: " + s1.getPhone() + "\n"
                 + "You belong in the Organization " + o1.getOrgName());
-                m1.donatorMenu(s1, o1);
+                m1.donatorMenu(s1, o1, m1);
             //μέθοδο για συνέχεια
         }
         else 
@@ -79,7 +79,7 @@ public class Menu
                 + "Username: " + name + "\n"
                 + "Phone number: " + phone + "\n"
                 + "You belong in the Organization " + o1.getOrgName());
-                m1.donatorMenu(d, o1);
+                m1.donatorMenu(d, o1, m1);
         }
         else if(select.equals("2"))
         {
@@ -96,10 +96,11 @@ public class Menu
         scanner.close();
     }
 
-    public void donatorMenu(Donator d, Organization o){
+    public void donatorMenu(Donator d, Organization o, Menu m1){
         int select = 0;
         int id = 0;
         Scanner scanner = new Scanner(System.in);
+        Scanner scanner1 = new Scanner(System.in);
         System.out.println("Please Select One Of The Following Options: ");
         System.out.println("1) Add Offer \n" + 
         "2) Show Offers \n" + 
@@ -115,6 +116,7 @@ public class Menu
         switch (select){
             case 1:
                 int select1 = 0;
+                String select2;
                 double amount = 0;
                 double hours = 0;
                 System.out.println("Please Select One Of The Following Options: ");
@@ -130,12 +132,13 @@ public class Menu
                     id = scanner.nextInt();
                     System.out.println("Input the Amount You Want to Contribute: ");
                     amount = scanner.nextDouble();
-
-                    //Επιλογή yes or no
-
-                    RequestDonation req = new RequestDonation(o.getEntityById(id), amount);
-                    d.getOffersList().add(req);
-                    
+                    System.out.println("Confirm the Donations: ");
+                    select2 = scanner1.nextLine();
+                    if (select2.equals("yes")){
+                        System.out.println("The Donation was succeed.");
+                        RequestDonation req = new RequestDonation(o.getEntityById(id), amount);
+                        d.getOffersList().add(req);
+                    }else if(select2.equals("no")) System.out.println("The Donation was cancelled.");
                 }
                 if(select1 == 2){
                     o.listServices();
@@ -143,17 +146,18 @@ public class Menu
                     id = scanner.nextInt();
                     System.out.println("Input the Amount You Want to Contribute: ");
                     hours = scanner.nextDouble();
-
-                    //Επιλογή yes or no
-
-                    RequestDonation req = new RequestDonation(o.getEntityById(id), hours);
-                    d.getOffersList().add(req);
-                    
+                    System.out.println("Confirm the Donation (yes/no): ");
+                    select2 = scanner1.nextLine();
+                    if (select2.equals("yes")){
+                        RequestDonation req = new RequestDonation(o.getEntityById(id), hours);
+                        d.getOffersList().add(req);
+                    }else System.out.println("The Donation was cancelled.");
                 }
+
                 break;
 
+
             case 2:
-                
                 d.listOffers();
                 break;
             case 3:
@@ -175,7 +179,9 @@ public class Menu
             default :
 
         }
+        m1.donatorMenu(d, o, m1);
         scanner.close();
+        scanner1.close();
     }
 
 
