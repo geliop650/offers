@@ -1,25 +1,24 @@
 import java.util.ArrayList;
 public class RequestDonationList
 {
-    public ArrayList<RequestDonation> rdEntities = new ArrayList <RequestDonation> ();
+    private ArrayList<RequestDonation> rdEntities = new ArrayList <> ();
     private int id;
     public RequestDonation get(int id)
     { 
-        int j=0;
-        for (int i=0; i<rdEntities.size(); i++)
+        for (RequestDonation rd : rdEntities)
         {
-            if (id == rdEntities.get(i).getID())
+            if (id == rd.getID())
             {
-                j=i;
+                return rd;
             }
-        }
-        return rdEntities.get(j);
+        }return null;
+        
     }
     public void add(RequestDonation R)
     {
         for (int i=0; i<rdEntities.size(); i++)
         {
-            if (R.getID() == rdEntities.get(i).getID())
+            if (R.getEntityID() == rdEntities.get(i).getEntityID())
             {
                 double newq;
                 newq = rdEntities.get(i).getQuantity() + R.getQuantity();
@@ -32,11 +31,15 @@ public class RequestDonationList
     {
         rdEntities.remove(r);
     }
+    public void remove(int id)
+    {
+        remove(rdEntities.get(id));
+    }
     public void modify(RequestDonation r, double q)
     {
         for (int i=0; i<rdEntities.size(); i++)
         {
-            if (r.getID() == rdEntities.get(i).getID())
+            if (r.getEntityID() == rdEntities.get(i).getEntityID())
             {
                 rdEntities.get(i).setQuantity(q);
             }
@@ -67,5 +70,8 @@ public class RequestDonationList
             if (r.getEntity().getName().equals(n)) total += r.getQuantity();
         }
         return total;
+    }
+    public ArrayList<RequestDonation> getRdEntities(){
+        return rdEntities;
     }
 }

@@ -132,7 +132,7 @@ public class Menu
                     id = scanner.nextInt();
                     System.out.println("Input the Amount You Want to Contribute: ");
                     amount = scanner.nextDouble();
-                    System.out.println("Confirm the Donations: ");
+                    System.out.println("Confirm the Donations (yes/no): ");
                     select2 = scanner1.nextLine();
                     if (select2.equals("yes")){
                         System.out.println("The Donation was succeed.");
@@ -153,12 +153,43 @@ public class Menu
                         d.getOffersList().add(req);
                     }else System.out.println("The Donation was cancelled.");
                 }
-
                 break;
 
-
             case 2:
+                int select3 = 0;
+                String select4;
+                String select5;
+                double q = 0;
                 d.listOffers();
+                if (!d.listOffers()){
+                    break;
+                }
+                System.out.println("Please Select One Of The Options: \n" +
+                "a) Edit or Delete a Donation \n" +
+                "b) Delete All Your Donations \n" +
+                "c) Commit ");
+                select4 = scanner.nextLine();
+                if (select4.equals("a")){
+                    System.out.println("Please Select One Of The Donations by its Number: ");
+                    select3 = scanner1.nextInt();
+                    System.out.println("Please Press d for Delete or e For Edit: ");
+                    select5 = scanner1.nextLine();
+                    if (select5.equals("d"))
+                    {
+                        d.getOffersList().remove(select3);
+                    }
+                    else {
+                        System.out.println("Please Enter the New Quantity You Wish to Donate: ");
+                        q = scanner1.nextDouble();
+                        d.getOffersList().modify(d.getOffersList().get(select3), q);
+                    }
+                }
+                else if (select4.equals("b")){
+                    d.getOffersList().reset();
+                }
+                else if (select4.equals("c")){
+                    d.getOffersList().commit(o);
+                }
                 break;
             case 3:
 

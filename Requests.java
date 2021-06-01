@@ -2,7 +2,7 @@ public class Requests extends RequestDonationList
 {
     public boolean validRequestDonation(Beneficiary b)
     {
-        for (RequestDonation r : rdEntities){
+        for (RequestDonation r : getRdEntities()){
             if(!r.isValid(b)){
                 return false;
             }
@@ -26,7 +26,7 @@ public class Requests extends RequestDonationList
     public void commit(Organization o1, RequestDonation rd, Beneficiary b){
         if(o1.isAvailable(rd)){//overriding τα ifs
             if(validRequestDonation(b)){
-                for(RequestDonation cr : rdEntities){
+                for(RequestDonation cr : getRdEntities()){
                     if(cr.getName().equals(rd.getName())){
                         cr.removeQuantity(rd.getQuantity());
                         b.addReceived(rd);

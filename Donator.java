@@ -1,6 +1,6 @@
 class Donator extends User
 {
-    private Offers offersList;
+    private Offers offersList = new Offers();
     public Donator(int id, String name, String phone){
         setName(name);
         setPhone(phone);
@@ -18,11 +18,16 @@ class Donator extends User
     {
         return offersList;
     }
-    public void listOffers(){
-        for (RequestDonation rd : offersList.rdEntities){
-            System.out.println(String.format("ID: %d Name: %s Quantity: %d Type: %s", rd.getID(), rd.getName(), rd.getQuantity(), 
+    public boolean listOffers(){
+        if (offersList.getRdEntities().isEmpty())
+        {
+            System.out.println("The offersList is empty"); 
+            return false;
+        }
+        for (RequestDonation rd : offersList.getRdEntities()){
+            System.out.println(String.format("ID: %d Name: %s Quantity: %d Type: %s", rd.getEntityID(), rd.getName(), rd.getQuantity(), 
             rd.getEntity().isService() ? "Service" : "Material"));
         }
-
-        }
+        return true;
+    }
 }
