@@ -14,17 +14,17 @@ public class RequestDonationList
         }return null;
         
     }
-    public void add(RequestDonation R)
+    public void add(RequestDonation r)
     {
-        for (int i=0; i<rdEntities.size(); i++)
+        for (RequestDonation rd : rdEntities)
         {
-            if (R.getEntityID() == rdEntities.get(i).getEntityID())
+            if (r.getEntityID() == rd.getEntityID())
             {
                 double newq;
-                newq = rdEntities.get(i).getQuantity() + R.getQuantity();
-                rdEntities.get(i).setQuantity(newq);
+                newq = rd.getQuantity() + r.getQuantity();
+                rd.setQuantity(newq);
             }
-            else rdEntities.add(R);
+            else rdEntities.add(r);
         }
     }
     public void remove(RequestDonation r)
@@ -56,9 +56,9 @@ public class RequestDonationList
     {
         rdEntities.clear();
     }
-    public void setID(int ID)
+    public void setID(int id1)
     {
-        id = ID;
+        id = id1;
     }
     public int getID()
     {

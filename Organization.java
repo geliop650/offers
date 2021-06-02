@@ -5,9 +5,9 @@ public class Organization
     private Admin admin;
     private int id;
     
-    public ArrayList <Entity> entityList = new ArrayList <Entity> ();
-    public ArrayList <Donator> donatorList = new ArrayList <Donator> ();
-    public ArrayList <Beneficiary> beneficiaryList = new ArrayList <Beneficiary> ();
+    public ArrayList <Entity> entityList = new ArrayList <> ();
+    public ArrayList <Donator> donatorList = new ArrayList <> ();
+    public ArrayList <Beneficiary> beneficiaryList = new ArrayList <> ();
     public RequestDonationList currentDonations;
     public Organization(String org)
     {
@@ -110,7 +110,7 @@ public class Organization
     {
         for (int i=0; i<beneficiaryList.size(); i++)
         {
-            System.out.println ("Beneficiary No " + (i+1) + " is " + beneficiaryList.get(i).getName());
+            System.out.println ("Beneficiary ID " + beneficiaryList.get(i).getID() + " Name: " + beneficiaryList.get(i).getName());
             
         }
     }
@@ -139,11 +139,20 @@ public class Organization
     }
     
     public Beneficiary getBeneficiary(String phone){
-        for (int i=0; i<donatorList.size(); i++)
+        for (int i=0; i<beneficiaryList.size(); i++)
         {
             if (phone.equals(beneficiaryList.get(i).getPhone()))
             {
                 return beneficiaryList.get(i);
+            }
+        }
+        return null;
+    }
+
+    public Beneficiary getBeneficiaryById(int id){
+        for(Beneficiary b : beneficiaryList){
+            if (b.getID() == id){
+                return b;
             }
         }
         return null;

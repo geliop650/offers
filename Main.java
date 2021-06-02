@@ -17,9 +17,9 @@ public class Main
         org.addEntity(babysitting);
         Admin ad = new Admin(1, "Maria" ,"6955555555");
         org.setAdmin(ad);
-        Beneficiary b1 = new Beneficiary(1, "Kostas", "6944444444");
+        Beneficiary b1 = new Beneficiary(1, "Kostas", "6944444444", 2);
         org.insertBeneficiary(b1);
-        Beneficiary b2 = new Beneficiary(2, "Giorgos" , "698888888");
+        Beneficiary b2 = new Beneficiary(2, "Giorgos" , "698888888", 1);
         org.insertBeneficiary(b2);
         Donator d1 = new Donator(1, "Takis", "697777777");
         org.insertDonator(d1);

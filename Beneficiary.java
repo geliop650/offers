@@ -38,10 +38,11 @@ class Beneficiary extends User
         return requestsList;
     }
 
-    public Beneficiary(int id, String name, String phone)
+    public Beneficiary(int id, String name, String phone, int person)
     {
         setName(name);
         setPhone(phone);
         setID(id);
+        setnoPersons(person);
     }
 }
