@@ -118,7 +118,7 @@ public class Organization
     {
         for (int i=0; i<donatorList.size(); i++)
         {
-           System.out.println ("Donator No " + (i+1) + " is " + donatorList.get(i).getName());
+           System.out.println ("Donator ID " + donatorList.get(i).getID() + " Name: " + donatorList.get(i).getName());
         }
     }
     public RequestDonationList getCurrentDonations()
@@ -168,6 +168,15 @@ public class Organization
         }
         return null;
     }
+    public Donator getDonatorById(int id){
+        for(Donator d : donatorList){
+            if (d.getID() == id){
+                return d;
+            }
+        }
+        return null;
+    }
+    
     public String getOrgName()
     {
         return name;

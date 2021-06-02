@@ -216,7 +216,7 @@ public class Menu
             break;
 
             case 2:
-
+            monitorOrg(o);
             break;
 
             case 3:
@@ -403,11 +403,17 @@ public class Menu
             break;
 
         case 2:
-            
+            o.listDonators();
+            System.out.println("Please Select One Donator from the list above: ");
+            id = scanner.nextInt();
+            listDon(o, o.getDonatorById(id));
             break;
 
         case 3:
-
+        for(Beneficiary b : o.beneficiaryList){
+            b.getReceivedList().reset();
+        }
+        System.out.print("All the Received Lists of All the Beneficiaries Are Cleared!");
             break;
 
         default:
@@ -448,6 +454,32 @@ public class Menu
             break;
 
         default:
+        }
+    }
+    public void listDon(Organization o, Donator d){
+        int select = 0;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please Select One Of The Following Options: ");
+        System.out.println(
+        "1) View getOffersList \n" + 
+        "2) Remove Donator \n");
+        select = scanner.nextInt();
+        while (select < 1 || select > 3){
+            System.out.println("Please Select A Valid Option: ");
+            select = scanner.nextInt();
+        }
+        if(select == 1 ){
+            for(int i=0; i<d.getOffersList().getRdEntities().size(); i++)
+            {
+                System.out.println(String.format("ID: %d Name: %s Quantity %d" 
+                , d.getOffersList().getRdEntities().get(i).getID()
+                , d.getOffersList().getRdEntities().get(i).getEntity().getName() 
+                , d.getOffersList().getRdEntities().get(i).getQuantity()));
+            }
+        }else if (select == 2){
+
+            o.removeDonator(d);
+            System.out.println(String.format("The Donator with Name %s has been removed from the Organization ", d.getName()));
         }
     }
 }
