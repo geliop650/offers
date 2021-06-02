@@ -1,8 +1,8 @@
 class Beneficiary extends User
 {
     private int noPersons = 1;
-    public RequestDonationList receivedList;
-    public Requests requestsList;
+    public RequestDonationList receivedList = new RequestDonationList();
+    public Requests requestsList = new Requests();
     public int getnoPersons()
     {
         return noPersons;
@@ -44,5 +44,17 @@ class Beneficiary extends User
         setPhone(phone);
         setID(id);
         setnoPersons(person);
+    }
+    public boolean listRequests(){
+        if (requestsList.getRdEntities().isEmpty())
+        {
+            System.out.println("The requestsList is empty"); 
+            return false;
+        }
+        for (RequestDonation rd : requestsList.getRdEntities()){
+            System.out.println(String.format("ID: %d Name: %s Quantity: %.2f Type: %s", rd.getID(), rd.getName(), rd.getQuantity(), 
+            rd.getEntity().isService() ? "Service" : "Material"));
+        }
+        return true;
     }
 }

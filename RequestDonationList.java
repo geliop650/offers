@@ -23,25 +23,32 @@ public class RequestDonationList
                 double newq;
                 newq = rd.getQuantity() + r.getQuantity();
                 rd.setQuantity(newq);
+                return;
             }
-            else rdEntities.add(r);
+            
         }
+        r.setID(rdEntities.size() + 1);
+        rdEntities.add(r);
+
     }
     public void remove(RequestDonation r)
     {
         rdEntities.remove(r);
     }
-    public void remove(int id)
+    public void removeById(int id)
     {
-        remove(rdEntities.get(id));
+        remove(get(id));
+    }
+    public void emptyList(){
+        rdEntities = new ArrayList <> ();
     }
     public void modify(RequestDonation r, double q)
     {
-        for (int i=0; i<rdEntities.size(); i++)
+        for (RequestDonation rd : rdEntities)
         {
-            if (r.getEntityID() == rdEntities.get(i).getEntityID())
+            if (r.getID() == rd.getID())
             {
-                rdEntities.get(i).setQuantity(q);
+                r.setQuantity(q);
             }
         }
     }
@@ -64,14 +71,22 @@ public class RequestDonationList
     {
         return id;
     }
-    public double getTotalQuantity(String n){
+    public double getTotalQuantity(String entityName){
         double total = 0;
         for (RequestDonation r : rdEntities){
-            if (r.getEntity().getName().equals(n)) total += r.getQuantity();
+            if (r.getEntity().getName().equals(entityName)) total += r.getQuantity();
         }
         return total;
     }
     public ArrayList<RequestDonation> getRdEntities(){
         return rdEntities;
+    }
+    public RequestDonation getByName(String n){
+        for(RequestDonation rd : rdEntities){
+            if (rd.getName().equals(n)){
+                return rd;
+            }
+        }
+        return null;
     }
 }

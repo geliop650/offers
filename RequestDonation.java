@@ -30,6 +30,9 @@ public class RequestDonation
     public int getID(){
         return id;
     }
+    public void setID(int i){
+        id = i;
+    }
     public boolean isValid(Beneficiary b){
         if(entity.isService()){
             return true;
@@ -48,7 +51,6 @@ public class RequestDonation
     }
     public Entity getEntity(){
         return entity;
-    }
-    
+    }    
 }
 

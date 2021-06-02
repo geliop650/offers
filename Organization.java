@@ -8,7 +8,7 @@ public class Organization
     public ArrayList <Entity> entityList = new ArrayList <> ();
     public ArrayList <Donator> donatorList = new ArrayList <> ();
     public ArrayList <Beneficiary> beneficiaryList = new ArrayList <> ();
-    public RequestDonationList currentDonations;
+    public RequestDonationList currentDonations = new RequestDonationList();
     public Organization(String org)
     {
         name = org;
@@ -133,10 +133,6 @@ public class Organization
     {
         return id;
     }
-    public enum UserStatus
-    {
-        ADMIN, DONATOR, BENEFICIARY;
-    }
     
     public Beneficiary getBeneficiary(String phone){
         for (int i=0; i<beneficiaryList.size(); i++)
@@ -176,7 +172,7 @@ public class Organization
         }
         return null;
     }
-    
+
     public String getOrgName()
     {
         return name;

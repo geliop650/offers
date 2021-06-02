@@ -25,7 +25,7 @@ class Donator extends User
             return false;
         }
         for (RequestDonation rd : offersList.getRdEntities()){
-            System.out.println(String.format("ID: %d Name: %s Quantity: %d Type: %s", rd.getEntityID(), rd.getName(), rd.getQuantity(), 
+            System.out.println(String.format("ID: %d Name: %s Quantity: %.2f Type: %s", rd.getID(), rd.getName(), rd.getQuantity(), 
             rd.getEntity().isService() ? "Service" : "Material"));
         }
         return true;

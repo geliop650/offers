@@ -9,9 +9,9 @@ public class Main
         org.addEntity(milk);
         org.addEntity(sugar);
         org.addEntity(rice);
-        Entity medicalSupport = new Service(1, "MedicalSupport");
-        Entity nurserySupport = new Service(2, "NurserySupport");
-        Entity babysitting = new Service(3, "Babysitting");
+        Entity medicalSupport = new Service(4, "MedicalSupport");
+        Entity nurserySupport = new Service(5, "NurserySupport");
+        Entity babysitting = new Service(6, "Babysitting");
         org.addEntity(medicalSupport);
         org.addEntity(nurserySupport);
         org.addEntity(babysitting);

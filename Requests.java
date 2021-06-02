@@ -1,3 +1,4 @@
+import java.util.Iterator;
 public class Requests extends RequestDonationList
 {
     public boolean validRequestDonation(Beneficiary b)
@@ -23,17 +24,22 @@ public class Requests extends RequestDonationList
             }//else ; exception
         }//else ; exception
     }
-    public void commit(Organization o1, RequestDonation rd, Beneficiary b){
-        if(o1.isAvailable(rd)){//overriding τα ifs
-            if(validRequestDonation(b)){
-                for(RequestDonation cr : getRdEntities()){
-                    if(cr.getName().equals(rd.getName())){
-                        cr.removeQuantity(rd.getQuantity());
+    public void commit(Organization o1, Beneficiary b){
+        for (Iterator <RequestDonation> it =  b.getRequestsList().getRdEntities().iterator(); it.hasNext();){
+            RequestDonation rd = it.next();
+            if(o1.isAvailable(rd)){//overriding τα ifs
+                if(validRequestDonation(b)){
+                    for(Iterator<RequestDonation> it1 = o1.currentDonations.getRdEntities().iterator(); it1.hasNext();){
+                        RequestDonation cr = it1.next();
                         b.addReceived(rd);
-                        return;
+                        if(cr.getName().equals(rd.getName())){
+                            cr.removeQuantity(rd.getQuantity());
+
+                        }
                     }
-                }
+                }//else ; exception
             }//else ; exception
-        }//else ; exception
+        } 
+        b.getRequestsList().emptyList();
     }
 }
