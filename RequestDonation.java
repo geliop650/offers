@@ -33,18 +33,18 @@ public class RequestDonation
     public void setID(int i){
         id = i;
     }
-    public boolean isValid(Beneficiary b){
+    public boolean isValid(Beneficiary b, double q){
         if(entity.isService()){
             return true;
         }else {
             if(b.getnoPersons() == 1){
-                return (b.getReceivedList().getTotalQuantity(entity.getName()) < entity.getLevel1());
+                return (b.getReceivedList().getTotalQuantity(entity.getName(), b, q) < entity.getLevel1());
             }
             else if(b.getnoPersons() <=4){
-                return (b.getReceivedList().getTotalQuantity(entity.getName()) < entity.getLevel2());
+                return (b.getReceivedList().getTotalQuantity(entity.getName(), b, q) < entity.getLevel2());
             }
             else if(b.getnoPersons() >= 5){
-                return (b.getReceivedList().getTotalQuantity(entity.getName()) < entity.getLevel3());
+                return (b.getReceivedList().getTotalQuantity(entity.getName(), b, q) < entity.getLevel3());
             }
             return false;
         }

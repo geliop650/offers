@@ -71,10 +71,21 @@ public class RequestDonationList
     {
         return id;
     }
-    public double getTotalQuantity(String entityName){
+    public double getTotalQuantity(String entityName, Beneficiary b, double tempQ){
         double total = 0;
-        for (RequestDonation r : rdEntities){
-            if (r.getEntity().getName().equals(entityName)) total += r.getQuantity();
+        double addedValue = 0;
+        for (RequestDonation r : b.getReceivedList().rdEntities){
+            if(r.getEntity().getName().equals(entityName)){
+                total = r.getQuantity();
+            }else return total;
+        }
+        for (RequestDonation r : b.getRequestsList().getRdEntities()){
+            if (r.getEntity().getName().equals(entityName)) {
+                if (tempQ == 0){
+                    addedValue = r.getQuantity();
+                } else addedValue = tempQ;
+                total = addedValue;            
+            }
         }
         return total;
     }

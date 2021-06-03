@@ -303,21 +303,19 @@ public class Menu
             System.out.println("Confirm the Request (yes/no): ");
             select2 = scanner2.nextLine();
             if (select2.equals("yes")){
-                System.out.println("The Request was succeed.");
                 RequestDonation req = new RequestDonation(o.getEntityById(id), amount);
                 b.getRequestsList().add(o, req, b);
             }else if(select2.equals("no")) System.out.println("The Request was cancelled.");
         }
         if(select1 == 2){
             o.listServices();
-            System.out.println("Input the ID of the Service You Want to Contribute: ");
+            System.out.println("Input the ID of the Service You Want to Request: ");
             id = scanner1.nextInt();
-            System.out.println("Input the Amount You Want to Contribute: ");
+            System.out.println("Input the Amount You Want to Request: ");
             hours = scanner1.nextDouble();
             System.out.println("Confirm the Request (yes/no): ");
             select2 = scanner2.nextLine();
             if (select2.equals("yes")){
-                System.out.println("The Request has been submitted.");
                 RequestDonation req = new RequestDonation(o.getEntityById(id), hours);
                 b.getRequestsList().add(o, req, b);
             }else System.out.println("The Request was cancelled.");
@@ -393,8 +391,7 @@ public class Menu
             else {
                 System.out.println("Please Enter the New Quantity You Wish to Receive: ");
                 q = scanner2.nextDouble();
-                b.getRequestsList().modify(b.getRequestsList().get(select3), q);
-                System.out.println("The Quantity of The Requested Item Has Changed.");
+                b.requestsList.modify(o, b.getRequestsList().get(select3), b, q);
             }
         }
         else if (select4.equals("b")){
@@ -403,8 +400,6 @@ public class Menu
         }
         else if (select4.equals("c")){
             b.requestsList.commit(o, b);
-            
-            System.out.println("Your Changes Have Been Saved! ");
         }
     }
     public void viewEntities(Organization o){
@@ -418,10 +413,10 @@ public class Menu
             select1 = scanner1.nextInt();
         }
         if(select1 == 1){
-            o.listMaterials();
+            o.listOrgMat();
         }
         if(select1 == 2){
-            o.listServices();
+            o.listOrgSer();
         }
     }
     public void monitorOrg(Organization o){
@@ -441,23 +436,35 @@ public class Menu
         switch (select){
         case 1:
             o.listBeneficiaries();
+            if(o.beneficiaryList.isEmpty()){
+                System.out.println("There Aren't Any Beneficiaries In The Organization");
+                break;
+            }
+            else{
             System.out.println("Please Select One Beneficiary from the list above: ");
             id = scanner.nextInt();
             listBen(o, o.getBeneficiaryById(id));
             break;
+            }
+            
 
         case 2:
+        if(o.donatorList.isEmpty()){
+            System.out.println("There Aren't Any Donators In The Organization");
+            break;
+        }
+        else{
             o.listDonators();
             System.out.println("Please Select One Donator from the list above: ");
             id = scanner.nextInt();
             listDon(o, o.getDonatorById(id));
             break;
-
+        }
         case 3:
         for(Beneficiary b : o.beneficiaryList){
             b.getReceivedList().reset();
         }
-        System.out.print("All the Received Lists of All the Beneficiaries Are Cleared!");
+        System.out.println("All the Received Lists of All the Beneficiaries Are Cleared!");
             break;
 
         default:
@@ -478,13 +485,17 @@ public class Menu
         }
         switch (select){
         case 1:
+            if(b.getReceivedList().getRdEntities().isEmpty()){
+                System.out.println("This Beneficiary Hasn't Requested Any Material/Service");
+            }else{
             for(int i=0; i<b.getReceivedList().getRdEntities().size(); i++)
             {
-                System.out.println(String.format("ID: %d Name: %s Quantity %d" 
+                System.out.println(String.format("ID: %d Name: %s Quantity %.2f" 
                 , b.getReceivedList().getRdEntities().get(i).getID()
                 , b.getReceivedList().getRdEntities().get(i).getEntity().getName() 
                 , b.getReceivedList().getRdEntities().get(i).getQuantity()));
             }
+        }
             break;
 
         case 2:
@@ -505,7 +516,7 @@ public class Menu
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please Select One Of The Following Options: ");
         System.out.println(
-        "1) View getOffersList \n" + 
+        "1) View Ongoing Offers \n" + 
         "2) Remove Donator \n");
         select = scanner.nextInt();
         while (select < 1 || select > 3){
@@ -513,15 +524,19 @@ public class Menu
             select = scanner.nextInt();
         }
         if(select == 1 ){
-            for(int i=0; i<d.getOffersList().getRdEntities().size(); i++)
-            {
-                System.out.println(String.format("ID: %d Name: %s Quantity %d" 
+            if(d.getOffersList().getRdEntities().isEmpty()){
+                System.out.println("This Donator Is Not About To Offer Any Material/Service");
+            }
+            else{
+                for(int i=0; i<d.getOffersList().getRdEntities().size(); i++){
+                System.out.println(String.format("ID: %d Name: %s Quantity %.2f" 
                 , d.getOffersList().getRdEntities().get(i).getID()
                 , d.getOffersList().getRdEntities().get(i).getEntity().getName() 
                 , d.getOffersList().getRdEntities().get(i).getQuantity()));
+                }
             }
-        }else if (select == 2){
-
+        }
+        else if (select == 2){
             o.removeDonator(d);
             System.out.println(String.format("The Donator with Name %s has been removed from the Organization ", d.getName()));
         }
