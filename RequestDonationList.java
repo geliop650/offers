@@ -72,19 +72,18 @@ public class RequestDonationList
         return id;
     }
     public double getTotalQuantity(String entityName, Beneficiary b, double tempQ){
+        double tempTotal = 0;
         double total = 0;
-        double addedValue = 0;
         for (RequestDonation r : b.getReceivedList().rdEntities){
             if(r.getEntity().getName().equals(entityName)){
-                total = r.getQuantity();
-            }else return total;
+                tempTotal = r.getQuantity();
+            }
         }
         for (RequestDonation r : b.getRequestsList().getRdEntities()){
-            if (r.getEntity().getName().equals(entityName)) {
+            if (r.getEntity().getName().equals(entityName)){
                 if (tempQ == 0){
-                    addedValue = r.getQuantity();
-                } else addedValue = tempQ;
-                total = addedValue;            
+                    total = tempTotal + r.getQuantity();
+                } else total = tempTotal + tempQ;
             }
         }
         return total;

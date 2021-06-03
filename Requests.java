@@ -20,7 +20,7 @@ public class Requests extends RequestDonationList
         }else {System.out.println("The organization doesn't have that much quantity");}//exception
     }
     public void modify(Organization o1, RequestDonation rd, Beneficiary b, double q){
-        if(o1.isAvailable(rd)){//overriding τα ifs
+        if(o1.isAvailable(rd)){
             if(validRequestDonation(b, q)){
                 modify(rd, q);
                 System.out.println("The Quantity of The Requested Item Has Changed.");
@@ -31,7 +31,7 @@ public class Requests extends RequestDonationList
         for (Iterator <RequestDonation> it =  b.getRequestsList().getRdEntities().iterator(); it.hasNext();){
             RequestDonation rd = it.next();
             double q = 0;
-            if(o1.isAvailable(rd)){//overriding τα ifs
+            if(o1.isAvailable(rd)){
                 if(validRequestDonation(b, q)){
                     for(Iterator<RequestDonation> it1 = o1.currentDonations.getRdEntities().iterator(); it1.hasNext();){
                         RequestDonation cr = it1.next();
@@ -41,7 +41,7 @@ public class Requests extends RequestDonationList
                             cr.removeQuantity(rd.getQuantity());
                         }
                     }
-                    System.out.println("Your Changes Have Been Saved!"); 
+                    System.out.println("Your Changes Have Been Saved!");
                     return true;
                 }else {System.out.println("You are not permitted to ask for this quantity"); return false;} //exception
             }else {System.out.println("The organization doesn't have that much quantity"); return false;}// exception

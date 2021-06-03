@@ -41,7 +41,6 @@ public class Menu
                 + "Phone number: " + s1.getPhone() + "\n"
                 + "You belong in the Organization " + o1.getOrgName());
                 m1.donatorMenu(s1, o1, m1, false);
-            //μέθοδο για συνέχεια
         }
         else 
         {
@@ -173,7 +172,6 @@ public class Menu
                 break;
             case 3:
             b.requestsList.commit(o, b);
-            System.out.println("Your Changes Were Succesfully Saved!");
             break;
 
             case 4:
