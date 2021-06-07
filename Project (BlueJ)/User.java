@@ -3,24 +3,28 @@ abstract public class User
     private String name;
     private String phone;
     private int id;
-    public String getName() {
+
+    public String getName(){
         return name;
     }
-    public String getPhone() {
+
+    public String getPhone(){
         return phone;
     }
-    public void setPhone(String phone) {
+
+    public void setPhone(String phone){
         this.phone = phone;
     }
-    public void setName(String name) {
+
+    public void setName(String name){
         this.name = name;
     }
-    public void setID(int ID)
-    {
+
+    public void setID(int ID){
         id = ID;
     }
-    public int getID()
-    {
+
+    public int getID(){
         return id;
     }
 }

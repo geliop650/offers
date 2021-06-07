@@ -1,10 +1,9 @@
 import java.util.ArrayList;
-public class RequestDonationList
-{
+public class RequestDonationList{
     private ArrayList<RequestDonation> rdEntities = new ArrayList <> ();
     private int id;
-    public RequestDonation get(int id)
-    { 
+
+    public RequestDonation get(int id){ 
         for (RequestDonation rd : rdEntities)
         {
             if (id == rd.getID())
@@ -12,10 +11,9 @@ public class RequestDonationList
                 return rd;
             }
         }return null;
-        
     }
-    public void add(RequestDonation r, Organization o)
-    {
+
+    public void add(RequestDonation r, Organization o){
         for (RequestDonation rd : rdEntities)
         {
             if (r.getEntityID() == rd.getEntityID())
@@ -36,21 +34,21 @@ public class RequestDonationList
         }
         r.setID(rdEntities.size() + 1);
         rdEntities.add(r);
-
     }
-    public void remove(RequestDonation r)
-    {
+
+    public void remove(RequestDonation r){
         rdEntities.remove(r);
     }
-    public void removeById(int id)
-    {
+
+    public void removeById(int id){
         remove(get(id));
     }
+
     public void emptyList(){
         rdEntities = new ArrayList <> ();
     }
-    public void modify(RequestDonation r, double q)
-    {
+
+    public void modify(RequestDonation r, double q){
         for (RequestDonation rd : rdEntities)
         {
             if (r.getID() == rd.getID())
@@ -59,25 +57,26 @@ public class RequestDonationList
             }
         }
     }
-    public void monitor()
-    {
+
+    public void monitor(){
         for (int i=0; i<rdEntities.size(); i++)
         {
             System.out.println("Request No." + (i+1) + " is " + rdEntities.get(i).getName() + "and it's quantity is " + rdEntities.get(i).getQuantity());
         }
     }
-    public void reset()
-    {
+
+    public void reset(){
         rdEntities.clear();
     }
-    public void setID(int id1)
-    {
+
+    public void setID(int id1){
         id = id1;
     }
-    public int getID()
-    {
+
+    public int getID(){
         return id;
     }
+
     public double getTotalQuantity(String entityName, Beneficiary b, double tempQ){
         double tempTotal = 0;
         double total = 0;
@@ -95,9 +94,11 @@ public class RequestDonationList
         }
         return total;
     }
+
     public ArrayList<RequestDonation> getRdEntities(){
         return rdEntities;
     }
+
     public RequestDonation getByName(String n){
         for(RequestDonation rd : rdEntities){
             if (rd.getName().equals(n)){

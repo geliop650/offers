@@ -3,51 +3,44 @@ class Beneficiary extends User
     private int noPersons = 1;
     public RequestDonationList receivedList = new RequestDonationList();
     public Requests requestsList = new Requests();
-    public int getnoPersons()
-    {
-        return noPersons;
-    }
-
-    public void setnoPersons(int p)
-    {
-        noPersons = p;
-    }
-
-    public void addRequest(RequestDonation rd, Organization o)
-    {
-        requestsList.add(rd, o);
-    }
-
-    public void remove(RequestDonation rd)
-    {
-        requestsList.remove(rd);
-    }
-
-    public void addReceived(RequestDonation rd, Organization o)
-    {
-        receivedList.add(rd, o);
-    }
-
-    public RequestDonationList getReceivedList()
-    {
-        return receivedList;
-    }
-
-    public Requests getRequestsList()
-    {
-        return requestsList;
-    }
-
-    public Beneficiary(int id, String name, String phone, int person)
-    {
+    
+    public Beneficiary(int id, String name, String phone, int person){
         setName(name);
         setPhone(phone);
         setID(id);
         setnoPersons(person);
     }
+    
+    public int getnoPersons(){
+        return noPersons;
+    }
+
+    public void setnoPersons(int p){
+        noPersons = p;
+    }
+
+    public void addRequest(RequestDonation rd, Organization o){
+        requestsList.add(rd, o);
+    }
+
+    public void remove(RequestDonation rd){
+        requestsList.remove(rd);
+    }
+
+    public void addReceived(RequestDonation rd, Organization o){
+        receivedList.add(rd, o);
+    }
+
+    public RequestDonationList getReceivedList(){
+        return receivedList;
+    }
+
+    public Requests getRequestsList(){
+        return requestsList;
+    }
+
     public boolean listRequests(){
-        if (requestsList.getRdEntities().isEmpty())
-        {
+        if (requestsList.getRdEntities().isEmpty()){
             System.out.println("The requestsList is empty"); 
             return false;
         }

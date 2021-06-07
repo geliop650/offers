@@ -1,6 +1,5 @@
 import java.util.ArrayList;
-public class Organization
-{
+public class Organization{
     private String name;
     private Admin admin;
     private int id;
@@ -9,24 +8,24 @@ public class Organization
     public ArrayList <Donator> donatorList = new ArrayList <> ();
     public ArrayList <Beneficiary> beneficiaryList = new ArrayList <> ();
     public RequestDonationList currentDonations = new RequestDonationList();
-    public Organization(String org)
-    {
+    
+    public Organization(String org){
         name = org;
     }
-    public void setAdmin(Admin a1)
-    {
+
+    public void setAdmin(Admin a1){
         admin = a1;
     }
-    public Admin getAdmin()
-    {
+
+    public Admin getAdmin(){
         return admin;
     }
-    public void addEntity(Entity entity)
-    {
+
+    public void addEntity(Entity entity){
         try{
             for (Entity en : entityList){
                 if (en.getID() == entity.getID()){
-                    throw new SimilarityException("This Entity Already Exists.");
+                    throw new OverQuantity("This Entity Already Exists.");
                 }
             }
         }catch(Exception e){
@@ -35,12 +34,12 @@ public class Organization
         }
         entityList.add(entity);
     }
-    public void removeEntity(Entity entity)
-    {
+
+    public void removeEntity(Entity entity){
        if (admin.getIsAdmin()) entityList.remove(entity);
     }
-    public void insertDonator(Donator d)
-    {
+
+    public void insertDonator(Donator d){
         try{
             for (Donator don : donatorList){
                 if (don.getID() == d.getID()){
@@ -53,12 +52,12 @@ public class Organization
         }
         donatorList.add(d);
     }
-    public void removeDonator(Donator d)
-    {
+
+    public void removeDonator(Donator d){
         donatorList.remove(d);
     }
-    public void insertBeneficiary(Beneficiary b)
-    {
+
+    public void insertBeneficiary(Beneficiary b){
         try{
             for (Beneficiary be : beneficiaryList){
                 if (be.getID() == b.getID()){
@@ -71,124 +70,92 @@ public class Organization
         }
         beneficiaryList.add(b);
     }
-    public void removeBeneficiary(Beneficiary b)
-    {
+
+    public void removeBeneficiary(Beneficiary b){
         beneficiaryList.remove(b);
     }
-    public void listEntities()
-    {
+
+    public void listEntities(){
         System.out.println("The available entities are: Materials and Services.");
         System.out.println ("Materials: ");
-        for (int i=0; i<entityList.size(); i++)
-        {
-            if (!entityList.get(i).isService)
-            {
+        for (int i=0; i<entityList.size(); i++){
+            if (!entityList.get(i).isService){
                 System.out.println ("No." + (i+1) + entityList.get(i).getName());    
             }
         }
         System.out.println();
         System.out.println ("Services: ");
-        for (int i=0; i<entityList.size(); i++)
-        {
-            if (entityList.get(i).isService)
-            {
+        for (int i=0; i<entityList.size(); i++){
+            if (entityList.get(i).isService){
                 System.out.println ("No." + (i+1) + entityList.get(i).getName());    
             }
         }
     }
-    public void listCurrentMaterials(){
-        System.out.println ("Materials: ");
-        for (RequestDonation l : currentDonations.getRdEntities())
-        {
-            if (!l.getEntity().isService)
-            {
-                System.out.println (String.format("ID: %s Name: %s (Quantity: %d ) ", l.getEntityID(), l.getName(), l.getQuantity()));
-            }
-        }
-    }
-    public void listCurrentServices(){
-        System.out.println ("Services: ");
-        for (RequestDonation l : currentDonations.getRdEntities())
-        {
-            if (l.getEntity().isService)
-            {
-                System.out.println (String.format("ID: %s Name: %s (Quantity: %d ) ", l.getEntityID(), l.getName(), l.getQuantity()));
-            }
-        }
-    }
+
     public void listMaterials(){
         System.out.println ("Materials: ");
-        for (Entity e : entityList)
-        {
-            if (!e.isService())
-            {
+        for (Entity e : entityList){
+            if (!e.isService()){
                 System.out.println (String.format("ID: %s Name: %s ", e.getID(), e.getName()));
             }
         }
     } 
+
     public void listOrgMat(){
         System.out.println ("Materials: ");
-        for (RequestDonation rd : currentDonations.getRdEntities())
-        {
-            if (!rd.getEntity().isService())
-            {
+        for (RequestDonation rd : currentDonations.getRdEntities()){
+            if (!rd.getEntity().isService()){
                 System.out.println (String.format("ID: %s Name: %s Quantity: %.2f", rd.getEntity().getID(), rd.getEntity().getName(), rd.getQuantity()));
             }
         }
-    } 
+    }
+
     public void listServices(){
         System.out.println ("Services: ");
-        for (Entity e : entityList)
-        {
-            if (e.isService())
-            {
+        for (Entity e : entityList){
+            if (e.isService()){
                 System.out.println (String.format("ID: %s Name: %s ", e.getID(), e.getName()));
             }
         }
     }
+
     public void listOrgSer(){
         System.out.println ("Services: ");
-        for (RequestDonation rd : currentDonations.getRdEntities())
-        {
-            if (rd.getEntity().isService())
-            {
+        for (RequestDonation rd : currentDonations.getRdEntities()){
+            if (rd.getEntity().isService()){
                 System.out.println (String.format("ID: %s Name: %s Quantity: %.2f", rd.getEntity().getID(), rd.getEntity().getName(), rd.getQuantity()));
             }
         }
     } 
-    public void listBeneficiaries()
-    {
-        for (int i=0; i<beneficiaryList.size(); i++)
-        {
+
+    public void listBeneficiaries(){
+        for (int i=0; i<beneficiaryList.size(); i++){
             System.out.println ("Beneficiary ID " + beneficiaryList.get(i).getID() + " Name: " + beneficiaryList.get(i).getName());
             
         }
     }
-    public void listDonators()
-    {
-        for (int i=0; i<donatorList.size(); i++)
-        {
+
+    public void listDonators(){
+        for (int i=0; i<donatorList.size(); i++){
            System.out.println ("Donator ID " + donatorList.get(i).getID() + " Name: " + donatorList.get(i).getName());
         }
     }
-    public RequestDonationList getCurrentDonations()
-    {
+
+    public RequestDonationList getCurrentDonations(){
         return currentDonations;
     }
-    public void setID(int iD)
-    {
+
+    public void setID(int iD){
         id = iD;
     }
-    public int getID()
-    {
+
+    public int getID(){
         return id;
     }
     
     public Beneficiary getBeneficiary(String phone){
-        for (int i=0; i<beneficiaryList.size(); i++)
-        {
-            if (phone.equals(beneficiaryList.get(i).getPhone()))
-            {
+        for (int i=0; i<beneficiaryList.size(); i++){
+            if (phone.equals(beneficiaryList.get(i).getPhone())){
                 return beneficiaryList.get(i);
             }
         }
@@ -205,15 +172,14 @@ public class Organization
     }
     
     public Donator getDonator(String phone){
-        for (int i=0; i<donatorList.size(); i++)
-        {
-            if (phone.equals(donatorList.get(i).getPhone()))
-            {
+        for (int i=0; i<donatorList.size(); i++){
+            if (phone.equals(donatorList.get(i).getPhone())){
                 return donatorList.get(i);
             }
         }
         return null;
     }
+
     public Donator getDonatorById(int id){
         for(Donator d : donatorList){
             if (d.getID() == id){
@@ -223,13 +189,11 @@ public class Organization
         return null;
     }
 
-    public String getOrgName()
-    {
+    public String getOrgName(){
         return name;
     }
     
-    public void setOrgName(String org)
-    {
+    public void setOrgName(String org){
         name = org;
     }
 
@@ -241,6 +205,7 @@ public class Organization
         }
         return false;
     }
+
     public Entity getEntityById(int id){
         for(Entity e : entityList){
             if (e.getID() == id){
@@ -248,6 +213,7 @@ public class Organization
             }
         }return null;
     }
+
     public int getEntityId(int id){
         for(Entity e : entityList){
             if (e.getID() == id){

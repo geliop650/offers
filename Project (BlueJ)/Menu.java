@@ -1,12 +1,10 @@
 import java.util.*;
-public class Menu
-{
+public class Menu{
     private String phone;
     private String name;
     public Menu(){}
 
-    public void start(Organization o1, Menu m1)
-    {
+    public void start(Organization o1, Menu m1){
         System.out.println("Welcome to our organization! ");
         System.out.println("Please enter your phone number: ");
         Scanner scanner = new Scanner(System.in);
@@ -20,8 +18,7 @@ public class Menu
         Beneficiary t1 = o1.getBeneficiary(phone);
         Donator s1 = o1.getDonator(phone);
 
-        if (phone.equals(o1.getAdmin().getphone()))
-        {
+        if (phone.equals(o1.getAdmin().getphone())){
             System.out.println("Welcome Admin! \n" 
                 + "Username: " + o1.getAdmin().getName() + "\n"
                 + "Phone number: " + o1.getAdmin().getPhone() + "\n"
@@ -29,8 +26,7 @@ public class Menu
                 adminMenu (o1, m1);
         }
 
-        else if (t1 != null)
-        {
+        else if (t1 != null){
             System.out.println("Welcome Beneficiary! \n" 
                 + "Username: " + t1.getName() + "\n"
                 + "Phone number: " + t1.getPhone() + "\n"
@@ -39,16 +35,14 @@ public class Menu
                 beneficiaryMenu(t1, o1, m1, false);
         }
         
-        else if (s1 != null)
-        {
+        else if (s1 != null){
             System.out.println("Welcome Donator! \n" 
                 + "Username: " + s1.getName() + "\n"
                 + "Phone number: " + s1.getPhone() + "\n"
                 + "You belong in the Organization " + o1.getOrgName());
                 m1.donatorMenu(s1, o1, m1, false);
         }
-        else 
-        {
+        else{
             System.out.println ("This user is not yet registered in our system.");
             System.out.println ("Please enter yes to continue with your sign up, or no to exit the program.");
             try{
@@ -61,20 +55,19 @@ public class Menu
                 {
                     System.exit(0);
                     scanner.close();
-                }else throw new InvalidCharacterException("This is not an option. The program will now exit...");}
-                catch (Exception e){
-                    System.out.println(e.getMessage());
-                    System.exit(0);
-                }
+                }else throw new InvalidCharacterException("This is not an option. The program will now exit...");
+            }
+            catch (Exception e){
+                System.out.println(e.getMessage());
+                System.exit(0);
+            }
         }
         scanner.close();
     }
 
-    public void signUp(Organization o1, Menu m1)
-    {
+    public void signUp(Organization o1, Menu m1){
         String select;
         int person = 1;
-        int id = 1;
         int id2 = 2;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please Input your Name: ");
@@ -90,9 +83,9 @@ public class Menu
         System.out.println("Type 1 If you want to create a Donator Account or Type 2 If you want to create a Beneficiary Account");
         select = scanner.nextLine();
         try{
-            if(select.equals("1"))
-            {
-                Donator d = new Donator((id++), name, phone);
+            if(select.equals("1")){
+                int id = 2;
+                Donator d = new Donator(id++, name, phone);
                 o1.insertDonator(d);
                 System.out.println("Welcome Donator! \n" 
                     + "Username: " + name + "\n"
@@ -100,8 +93,7 @@ public class Menu
                     + "You belong in the Organization " + o1.getOrgName());
                     m1.donatorMenu(d, o1, m1, true);
             }
-            else if(select.equals("2"))
-            {
+            else if(select.equals("2")){
                 System.out.println("Please enter the Number of Members of Your Family: ");
                 person = scanner.nextInt();
                 Beneficiary b = new Beneficiary((id2++), name, phone, person);
@@ -116,13 +108,12 @@ public class Menu
             else{
                 throw new InvalidValueException("Invalid Option. Exiting the program...");
             }
-            
-        } catch(Exception e){
+        }catch(Exception e){
             System.out.println(e.getMessage());
             scanner.close();
             System.exit(0);
         }
-}
+    }
   
     public void donatorMenu(Donator d, Organization o, Menu m1, boolean gt){
         int select = 0;
@@ -163,11 +154,11 @@ public class Menu
                 System.exit(0);
                 break;
             default :
-
         }
         donatorMenu(d, o, m1, gt);
         scanner.close();
     }
+
     public void beneficiaryMenu(Beneficiary b, Organization o, Menu m1, boolean gt){
         int select = 0;
         Scanner scanner = new Scanner(System.in);
@@ -207,11 +198,11 @@ public class Menu
                 System.exit(0);
                 break;
             default :
-
         }
         m1.beneficiaryMenu(b, o, m1, gt);
         scanner.close();
     }
+    
     public void adminMenu (Organization o, Menu m1){
         int select = 0;
         Scanner scanner = new Scanner(System.in);
@@ -247,11 +238,11 @@ public class Menu
                 System.exit(0);
                 break;
             default :
-
         }
         adminMenu(o, m1);
         scanner.close();
     }
+   
     public void addOffers(Donator d, Organization o){
         int id = 0;
         Scanner scanner1 = new Scanner(System.in);
@@ -316,6 +307,7 @@ public class Menu
             }else System.out.println("The Donation was cancelled.");
         }
     }
+
     public void addRequest(Beneficiary b, Organization o){
         int id = 0;
         Scanner scanner1 = new Scanner(System.in);
@@ -363,73 +355,74 @@ public class Menu
                 if(id <= 0){
                     throw new InvalidValueException("There is not a Service With this ID");
                 }
-            System.out.println("Input the Amount You Want to Request: ");
-            hours = scanner1.nextDouble();
-            if(hours <= 0){
-                throw new InvalidValueException("You Cannot enter a value of 0 or Lower");
-            }
-        }catch (Exception e){
+                System.out.println("Input the Amount You Want to Request: ");
+                hours = scanner1.nextDouble();
+                if(hours <= 0){
+                    throw new InvalidValueException("You Cannot enter a value of 0 or Lower");
+                }
+            }catch (Exception e){
             System.out.println(e.getMessage());
             return;
-        }
+            }
             System.out.println("Confirm the Request (yes/no): ");
             select2 = scanner2.nextLine();
             if (select2.equals("yes")){
                 RequestDonation req = new RequestDonation(o.getEntityById(id), hours);
                 b.getRequestsList().add(o, req, b);
             }else System.out.println("The Request was cancelled.");
+        }
     }
-}
-    public void showOffers(Donator d, Organization o){
-                Scanner scanner = new Scanner(System.in);
-                Scanner scanner1 = new Scanner(System.in);
-                Scanner scanner2 = new Scanner(System.in);
-                int select3 = 0;
-                String select4;
-                String select5;
-                double q = 0;
-                boolean l = d.listOffers();
-                if (!l) return;
-                System.out.println("Please Select One Of The Options: \n" +
-                "a) Edit or Delete a Donation \n" +
-                "b) Delete All Your Donations \n" +
-                "c) Commit ");
-                select4 = scanner.nextLine();
-                if (select4.equals("a")){
-                    System.out.println("Please Select One Of The Donations by its ID: ");
-                    try{
-                        select3 = scanner1.nextInt();
-                        if(select3 <= 0){
-                            throw new InvalidValueException("There is not a Donation With this ID");
-                        }
-                    }
-                    catch(Exception e){
-                        System.out.println(e.getMessage());
-                        return;
-                    }
-                    System.out.println("Please Press d for Delete or e For Edit: ");
-                    select5 = scanner2.nextLine();
-                    if (select5.equals("d"))
-                    {
-                        d.getOffersList().removeById(select3);
-                        System.out.println("The Selected Donation Has Been Deleted.");
 
-                    }
-                    else if (select5.equals("e")) {
-                        System.out.println("Please Enter the New Quantity You Wish to Donate: ");
-                        q = scanner2.nextDouble();
-                        d.getOffersList().modify(d.getOffersList().get(select3), q);
-                        System.out.println("The Quantity of The Donated Item Has Changed.");
-                    }else System.out.println("Invalid Option. Returning to Main Menu.");
+    public void showOffers(Donator d, Organization o){
+        Scanner scanner = new Scanner(System.in);
+        Scanner scanner1 = new Scanner(System.in);
+        Scanner scanner2 = new Scanner(System.in);
+        int select3 = 0;
+        String select4;
+        String select5;
+        double q = 0;
+        boolean l = d.listOffers();
+        if(!l) return;
+        System.out.println("Please Select One Of The Options: \n" +
+        "a) Edit or Delete a Donation \n" +
+        "b) Delete All Your Donations \n" +
+        "c) Commit ");
+        select4 = scanner.nextLine();
+        if(select4.equals("a")){
+            System.out.println("Please Select One Of The Donations by its ID: ");
+            try{
+                select3 = scanner1.nextInt();
+                if(select3 <= 0){
+                    throw new InvalidValueException("There is not a Donation With this ID");
                 }
-                else if (select4.equals("b")){
-                    d.getOffersList().reset();
-                }
-                else if (select4.equals("c")){
-                    d.getOffersList().commit(o);
-                    System.out.println("Your Changes Have Been Saved! ");
-                }
+            }
+            catch(Exception e){
+                System.out.println(e.getMessage());
+                return;
+            }
+            System.out.println("Please Press d for Delete or e For Edit: ");
+            select5 = scanner2.nextLine();
+            if (select5.equals("d")){
+                d.getOffersList().removeById(select3);
+                System.out.println("The Selected Donation Has Been Deleted.");
+
+            }
+            else if (select5.equals("e")){
+                System.out.println("Please Enter the New Quantity You Wish to Donate: ");
+                q = scanner2.nextDouble();
+                d.getOffersList().modify(d.getOffersList().get(select3), q);
+                System.out.println("The Quantity of The Donated Item Has Changed.");
+            }else System.out.println("Invalid Option. Returning to Main Menu.");
+        }
+        else if (select4.equals("b")){
+            d.getOffersList().reset();
+        }
+        else if (select4.equals("c")){
+            d.getOffersList().commit(o);
+            System.out.println("Your Changes Have Been Saved! ");
+        }
     }
+
     public void showRequest(Beneficiary b, Organization o){
         Scanner scanner = new Scanner(System.in);
         Scanner scanner1 = new Scanner(System.in);
@@ -439,13 +432,13 @@ public class Menu
         String select5;
         double q = 0;
         boolean l = b.listRequests();
-        if (!l) return;
+        if(!l) return;
         System.out.println("Please Select One Of The Options: \n" +
         "a) Edit or Delete a Request \n" +
         "b) Delete All Your Requests \n" +
         "c) Commit ");
         select4 = scanner.nextLine();
-        if (select4.equals("a")){
+        if(select4.equals("a")){
             System.out.println("Please Select One Of The Requests by its ID: ");
             try{
                 select3 = scanner1.nextInt();
@@ -458,8 +451,7 @@ public class Menu
             }
             System.out.println("Please Press d for Delete or e For Edit: ");
             select5 = scanner2.nextLine();
-            if (select5.equals("d"))
-            {
+            if (select5.equals("d")){
                 b.getRequestsList().removeById(select3);
                 System.out.println("The Selected Request Has Been Deleted.");
             }
@@ -477,6 +469,7 @@ public class Menu
             b.requestsList.commit(o, b);
         }
     }
+
     public void viewEntities(Organization o){
         int select1 = 0;
         Scanner scanner1 = new Scanner(System.in);
@@ -494,6 +487,7 @@ public class Menu
             o.listOrgSer();
         }
     }
+
     public void monitorOrg(Organization o){
         int select = 0;
         int id = 0;
@@ -509,6 +503,7 @@ public class Menu
             select = scanner.nextInt();
         }
         switch (select){
+
         case 1:
             o.listBeneficiaries();
             if(o.beneficiaryList.isEmpty()){
@@ -522,7 +517,6 @@ public class Menu
             break;
             }
             
-
         case 2:
         if(o.donatorList.isEmpty()){
             System.out.println("There Aren't Any Donators In The Organization");
@@ -543,8 +537,9 @@ public class Menu
             break;
 
         default:
+        }
     }
-}
+    
     public void listBen(Organization o, Beneficiary b){
         int select = 0;
         Scanner scanner = new Scanner(System.in);
@@ -563,8 +558,7 @@ public class Menu
             if(b.getReceivedList().getRdEntities().isEmpty()){
                 System.out.println("This Beneficiary Hasn't Requested Any Material/Service");
             }else{
-            for(int i=0; i<b.getReceivedList().getRdEntities().size(); i++)
-            {
+            for(int i=0; i<b.getReceivedList().getRdEntities().size(); i++){
                 System.out.println(String.format("ID: %d Name: %s Quantity %.2f" 
                 , b.getReceivedList().getRdEntities().get(i).getID()
                 , b.getReceivedList().getRdEntities().get(i).getEntity().getName() 
@@ -586,6 +580,7 @@ public class Menu
         default:
         }
     }
+    
     public void listDon(Organization o, Donator d){
         int select = 0;
         Scanner scanner = new Scanner(System.in);

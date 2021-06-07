@@ -8,31 +8,39 @@ public class RequestDonation
         entity = e;
         quantity = q;
     }
+
     public void setQuantity(double q){
-            quantity = q;
+        quantity = q;
     }
-    
     
     public void removeQuantity(double q){
         quantity -= q;
     }
-    public double getQuantity()
-    {
+
+    public double getQuantity(){
         return quantity;
     }
+
     public String getName(){
         return entity.getName();
     }
-    public int getEntityID()
-    {
+
+    public int getEntityID(){
         return entity.getID();
     }
+
+    public Entity getEntity(){
+        return entity;
+    }    
+
     public int getID(){
         return id;
     }
+
     public void setID(int i){
         id = i;
     }
+    
     public boolean isValid(Beneficiary b, double q){
         if(entity.isService()){
             return true;
@@ -49,8 +57,6 @@ public class RequestDonation
             return false;
         }
     }
-    public Entity getEntity(){
-        return entity;
-    }    
+    
 }
 

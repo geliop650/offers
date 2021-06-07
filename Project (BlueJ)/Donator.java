@@ -1,26 +1,27 @@
 class Donator extends User
 {
     private Offers offersList = new Offers();
+
     public Donator(int id, String name, String phone){
         setName(name);
         setPhone(phone);
         setID(id);
     }
-    public void add(RequestDonation rd, Organization o)
-    {
+
+    public void add(RequestDonation rd, Organization o){
         offersList.add(rd, o);
     }
-    public void remove(RequestDonation rd)
-    {
+    
+    public void remove(RequestDonation rd){
         offersList.remove(rd);
     }
-    public Offers getOffersList()
-    {
+
+    public Offers getOffersList(){
         return offersList;
     }
+
     public boolean listOffers(){
-        if (offersList.getRdEntities().isEmpty())
-        {
+        if (offersList.getRdEntities().isEmpty()){
             System.out.println("The offersList is empty"); 
             return false;
         }
