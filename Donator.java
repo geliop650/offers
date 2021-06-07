@@ -6,9 +6,9 @@ class Donator extends User
         setPhone(phone);
         setID(id);
     }
-    public void add(RequestDonation rd)
+    public void add(RequestDonation rd, Organization o)
     {
-        offersList.add(rd);
+        offersList.add(rd, o);
     }
     public void remove(RequestDonation rd)
     {

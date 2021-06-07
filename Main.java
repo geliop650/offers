@@ -23,7 +23,6 @@ public class Main
         org.insertBeneficiary(b2);
         Donator d1 = new Donator(1, "Takis", "697777777");
         org.insertDonator(d1);
-        //Donator να βάλει πράγματα
         Menu m1 = new Menu();
         m1.start(org, m1);
     }

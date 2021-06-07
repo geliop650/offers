@@ -4,15 +4,15 @@ public class RequestDonation
     private double quantity;
     private int id;
 
-    public RequestDonation (Entity e, double a){
+    public RequestDonation (Entity e, double q){
         entity = e;
-        quantity = a;
-    }
-
-    public void setQuantity(double q)
-    {
         quantity = q;
     }
+    public void setQuantity(double q){
+            quantity = q;
+    }
+    
+    
     public void removeQuantity(double q){
         quantity -= q;
     }
@@ -38,13 +38,13 @@ public class RequestDonation
             return true;
         }else {
             if(b.getnoPersons() == 1){
-                return (b.getReceivedList().getTotalQuantity(entity.getName(), b, q) < entity.getLevel1());
+                return (b.getReceivedList().getTotalQuantity(entity.getName(), b, q) <= entity.getLevel1());
             }
             else if(b.getnoPersons() <=4){
-                return (b.getReceivedList().getTotalQuantity(entity.getName(), b, q) < entity.getLevel2());
+                return (b.getReceivedList().getTotalQuantity(entity.getName(), b, q) <= entity.getLevel2());
             }
             else if(b.getnoPersons() >= 5){
-                return (b.getReceivedList().getTotalQuantity(entity.getName(), b, q) < entity.getLevel3());
+                return (b.getReceivedList().getTotalQuantity(entity.getName(), b, q) <= entity.getLevel3());
             }
             return false;
         }

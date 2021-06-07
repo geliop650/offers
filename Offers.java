@@ -4,7 +4,7 @@ public class Offers extends RequestDonationList
     {
         int i = getRdEntities().size();
         while (i != 0){
-            o.currentDonations.add(getRdEntities().get(i-1));
+            o.currentDonations.add(getRdEntities().get(i-1), o);
             getRdEntities().remove(i-1);
             i -= 1;
         }

@@ -14,7 +14,7 @@ public class RequestDonationList
         }return null;
         
     }
-    public void add(RequestDonation r)
+    public void add(RequestDonation r, Organization o)
     {
         for (RequestDonation rd : rdEntities)
         {
@@ -25,7 +25,14 @@ public class RequestDonationList
                 rd.setQuantity(newq);
                 return;
             }
-            
+        }
+        try{
+            for (int i=0; i<o.entityList.size(); i++){
+            o.getEntityId(r.getEntityID());
+            }
+        }catch (Exception e){
+            System.out.println("There Aren't Any Entities With this ID");
+            return;
         }
         r.setID(rdEntities.size() + 1);
         rdEntities.add(r);

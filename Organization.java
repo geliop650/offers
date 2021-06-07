@@ -23,6 +23,16 @@ public class Organization
     }
     public void addEntity(Entity entity)
     {
+        try{
+            for (Entity en : entityList){
+                if (en.getID() == entity.getID()){
+                    throw new SimilarityException("This Entity Already Exists.");
+                }
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return;
+        }
         entityList.add(entity);
     }
     public void removeEntity(Entity entity)
@@ -31,6 +41,16 @@ public class Organization
     }
     public void insertDonator(Donator d)
     {
+        try{
+            for (Donator don : donatorList){
+                if (don.getID() == d.getID()){
+                    throw new SimilarityException("This Donator Already Exists.");
+                }
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return;
+        }
         donatorList.add(d);
     }
     public void removeDonator(Donator d)
@@ -39,6 +59,16 @@ public class Organization
     }
     public void insertBeneficiary(Beneficiary b)
     {
+        try{
+            for (Beneficiary be : beneficiaryList){
+                if (be.getID() == b.getID()){
+                    throw new SimilarityException("This Beneficiary Already Exists.");
+                }
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return;
+        }
         beneficiaryList.add(b);
     }
     public void removeBeneficiary(Beneficiary b)
@@ -217,5 +247,12 @@ public class Organization
                 return e;
             }
         }return null;
+    }
+    public int getEntityId(int id){
+        for(Entity e : entityList){
+            if (e.getID() == id){
+                return id;
+            } 
+        }return 0;
     }
 }

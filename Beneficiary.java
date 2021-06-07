@@ -13,9 +13,9 @@ class Beneficiary extends User
         noPersons = p;
     }
 
-    public void addRequest(RequestDonation rd)
+    public void addRequest(RequestDonation rd, Organization o)
     {
-        requestsList.add(rd);
+        requestsList.add(rd, o);
     }
 
     public void remove(RequestDonation rd)
@@ -23,9 +23,9 @@ class Beneficiary extends User
         requestsList.remove(rd);
     }
 
-    public void addReceived(RequestDonation rd)
+    public void addReceived(RequestDonation rd, Organization o)
     {
-        receivedList.add(rd);
+        receivedList.add(rd, o);
     }
 
     public RequestDonationList getReceivedList()

@@ -8,11 +8,11 @@ public class Material extends Entity
         return "This is a Material." + "For families with one member, the quantity is: " + this.level1 + ", for families with 2-4 members, the quantity is: "
         + this.level2 + " , for families with 5 members or more, the quantity is: " + this.level3;
     }
-    public Material (int id, String name,/*description*/ double l1, double l2, double l3)
+    public Material (int id, String name, double l1, double l2, double l3)
     {
         setID(id);
         setName(name);
-        setIsService(false);/*enum required*/
+        setIsService(false);
         level1 = l1;
         level2 = l2;
         level3 = l3;
