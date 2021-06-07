@@ -1,4 +1,3 @@
-import java.util.Iterator;
 public class Requests extends RequestDonationList{
     public boolean validRequestDonation(Beneficiary b, double q){
         for (RequestDonation r : getRdEntities()){
@@ -39,17 +38,15 @@ public class Requests extends RequestDonationList{
 
     public boolean commit(Organization o1, Beneficiary b){
         try{
-            for(Iterator <RequestDonation> it =  b.getRequestsList().getRdEntities().iterator(); it.hasNext();){
-                RequestDonation rd = it.next();
+            for(RequestDonation rd : b.getRequestsList().getRdEntities()){
                 double q = 0;
                 if(o1.isAvailable(rd)){
                     if(validRequestDonation(b, q)){
-                        for(Iterator<RequestDonation> it1 = o1.currentDonations.getRdEntities().iterator(); it1.hasNext();){
-                            RequestDonation cr = it1.next();
+                        for(RequestDonation rd1 : o1.currentDonations.getRdEntities()){
                             b.addReceived(rd, o1);
                             b.getRequestsList().emptyList();
-                            if(cr.getName().equals(rd.getName())){
-                                cr.removeQuantity(rd.getQuantity());
+                            if(rd1.getName().equals(rd.getName())){
+                                rd1.removeQuantity(rd.getQuantity());
                             }
                         }
                         System.out.println("Your Changes Have Been Saved!");

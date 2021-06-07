@@ -9,6 +9,13 @@
             "name": "Launch Main",
             "request": "launch",
             "mainClass": "Main",
+            "projectName": "Project (Visual Studio Code)_efe2fa97"
+        },
+        {
+            "type": "java",
+            "name": "Launch Main",
+            "request": "launch",
+            "mainClass": "Main",
             "projectName": "New folder (4)_5c898631"
         },
         {
